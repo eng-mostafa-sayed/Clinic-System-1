@@ -1,0 +1,25 @@
+<div class="add-patient">
+  <form class="add-patient__form">
+    <label for="name">Name</label>
+    <input type="text" class="input" id="name" />
+
+    <label for="phone"> Phone </label>
+    <input type="text" class="input" id="phone" />
+
+    <label for="age">Age</label>
+    <input type="text" class="input" id="age" />
+
+    <label for="gender">gender</label>
+    <select name="gender" id="gender" class="input">
+      <option value="male">Male</option>
+      <option value="feale">Female</option>
+    </select>
+
+    <label for="doctor">Doctor</label>
+    <select name="doctor" id="doctor" class="input">
+      <option [value]="doctorEassmId">Dr.Essam</option>
+    </select>
+    <div class="btn-1">Save</div>
+  </form>
+</div>
+<app-back routerLink="../"></app-back>
