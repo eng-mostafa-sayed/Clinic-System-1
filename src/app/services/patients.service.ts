@@ -8,7 +8,7 @@ import { Patient } from '../models/patient.model';
   providedIn: 'root',
 })
 export class PatientsService {
-  private rootURL = 'http://localhost:3000/api';
+  private rootURL = 'https://clinic-system-production.up.railway.app/api';
   patients: Patient[] = [
     {
       patientID: '21654',

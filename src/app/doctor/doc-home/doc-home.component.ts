@@ -18,7 +18,6 @@ export class DocHomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.patientsService.getPatients().subscribe((patients) => {
-      console.log(patients);
       patients.filter((patient) => {
         if (!patient.status) {
           this.inqueuePatients.push(patient);

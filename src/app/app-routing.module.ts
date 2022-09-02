@@ -9,6 +9,16 @@ const routes: Routes = [
     component: LandingComponent,
   },
   {
+    path: 'doctor/signin',
+    component: SigninComponent,
+    data: { username: 'doctor' },
+  },
+  {
+    path: 'nurse/signin',
+    component: SigninComponent,
+    data: { username: 'nurse' },
+  },
+  {
     path: 'doctor',
     loadChildren: () =>
       import('./doctor/doctor.module').then((m) => m.DoctorModule),
@@ -19,14 +29,9 @@ const routes: Routes = [
       import('./nurse/nurse.module').then((m) => m.NurseModule),
   },
   {
-    path: 'doctor/signin',
+    path: '**',
     component: SigninComponent,
     data: { username: 'doctor' },
-  },
-  {
-    path: 'nurse/signin',
-    component: SigninComponent,
-    data: { username: 'nurse' },
   },
 ];
 
