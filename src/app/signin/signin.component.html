@@ -1,0 +1,15 @@
+<div class="signin">
+  <div class="signin__box">
+    <h1>Signin</h1>
+    <form (ngSubmit)="login()" [formGroup]="loginForm">
+      <label for="password">Password</label>
+      <input
+        class="input"
+        type="password"
+        id="password"
+        formControlName="password"
+      />
+      <button type="submit" class="btn-1">Signin</button>
+    </form>
+  </div>
+</div>
