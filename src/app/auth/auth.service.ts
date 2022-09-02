@@ -32,7 +32,11 @@ export class AuthService {
           sessionStorage.setItem('token', this.token);
           this.isAuthenticated = true;
           this.authStatusListener$.next(true);
-          this.router.navigate(['/doctor/patients']);
+          if (username == 'doctor') {
+            this.router.navigate(['/doctor/patients']);
+          } else {
+            this.router.navigate(['/nurse/patients']);
+          }
         },
         error: (err) => {
           console.log(err);

@@ -18,7 +18,16 @@ const routes: Routes = [
     loadChildren: () =>
       import('./nurse/nurse.module').then((m) => m.NurseModule),
   },
-  { path: 'signin', component: SigninComponent },
+  {
+    path: 'doctor/signin',
+    component: SigninComponent,
+    data: { username: 'doctor' },
+  },
+  {
+    path: 'nurse/signin',
+    component: SigninComponent,
+    data: { username: 'nurse' },
+  },
 ];
 
 @NgModule({
