@@ -6,12 +6,16 @@ import { PatientComponent } from './patient/patient.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'patients',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
-    path: 'patients',
+    path: 'home',
     component: DocHomeComponent,
+  },
+  {
+    path: 'patients',
+    component: PatientComponent,
   },
   {
     path: 'patients/:id',

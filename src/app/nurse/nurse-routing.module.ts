@@ -7,16 +7,20 @@ import { PatientReadOnlyComponent } from './patient-read-only/patient-read-only.
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'patients',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
-    path: 'patients',
+    path: 'home',
     component: NurseHomeComponent,
   },
   {
-    path: 'patients/add',
+    path: 'add',
     component: AddPatientComponent,
+  },
+  {
+    path: 'patients',
+    component: PatientReadOnlyComponent,
   },
   {
     path: 'patients/:id',
