@@ -1,0 +1,21 @@
+@keyframes pop-from-right {
+  0% {
+    opacity: 0;
+    transform: translateX(40rem);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes pop-from-left {
+  0% {
+    opacity: 0;
+
+    transform: translateX(-40rem);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,52 @@
+header.hero {
+  background-color: $color-secondary-2;
+  overflow: hidden;
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem 0rem;
+    #logo {
+      font-size: 3.2rem;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+  }
+  .content {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 4rem;
+    &__img {
+      width: 60%;
+      animation: pop-from-right 1s ease-in-out;
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    &__text {
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      animation: pop-from-left 1s ease-in-out;
+
+      h1 {
+        font-size: 5rem;
+        color: $color-primary;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+      p {
+        font-size: 2rem;
+        color: $color-secondary-1;
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+      }
+      a {
+        margin-left: 30px;
+      }
+    }
+  }
+}

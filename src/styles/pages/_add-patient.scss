@@ -1,0 +1,25 @@
+.add-patient {
+  display: flex;
+  justify-content: center;
+  &__form {
+    background-color: $color-secondary-1;
+    color: #fff;
+    padding: 3rem;
+    margin-top: 4rem;
+    border-radius: 10px;
+    min-width: 40%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    display: grid;
+    grid-template-columns: min-content minmax(50%, 1fr);
+    column-gap: 4rem;
+    row-gap: 4rem;
+    .btn-1 {
+      grid-column-start: 1;
+      grid-column-end: -1;
+      align-self: center;
+      width: 90%;
+      margin: 0 auto;
+      text-align: center;
+    }
+  }
+}

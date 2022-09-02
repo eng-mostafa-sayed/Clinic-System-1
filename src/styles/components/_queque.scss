@@ -1,0 +1,29 @@
+.queue {
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(40%, 1fr));
+    grid-template-rows: repeat(2, minmax(1fr, max-content));
+    row-gap: 2rem;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.356);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+  }
+  &__header {
+    grid-column: 1 / -1;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.116);
+    padding-bottom: 2rem;
+    font-size: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__divider {
+    grid-column-start: 1;
+    grid-column-end: -1;
+    height: 1px;
+    background-color: #ddd;
+  }
+}

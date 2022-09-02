@@ -1,0 +1,10 @@
+.doc {
+  &__header {
+    width: 100%;
+    background-color: $color-primary;
+    color: #fff;
+    padding: 3rem 0rem;
+    margin-bottom: 2rem;
+    text-transform: capitalize;
+  }
+}

@@ -1,0 +1,16 @@
+.input {
+  border: 1px solid rgba(0, 0, 0, 0.274);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.363);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  transition: all 0.4s;
+  &:focus {
+    outline: none;
+    border: 1px solid $color-secondary-1;
+  }
+  &:disabled {
+    color: #000;
+    background-color: #fff;
+  }
+}

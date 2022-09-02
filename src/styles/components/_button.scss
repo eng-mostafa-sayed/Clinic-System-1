@@ -1,0 +1,115 @@
+.btn-1 {
+  font-size: 1.8rem;
+  color: #fff;
+  background-color: $color-primary;
+  border-radius: 4px;
+  padding: 10px 30px;
+  transition: all 0.5s ease-in-out;
+  position: relative;
+  cursor: pointer;
+}
+.btn-1::before,
+.btn-1::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  transition: all 0.5s ease-in-out;
+}
+.btn-1::before {
+  top: -7px;
+  left: -7px;
+  border-top: 3px solid $color-primary;
+  border-left: 3px solid $color-primary;
+}
+.btn-1::after {
+  bottom: -7px;
+  right: -7px;
+  border-bottom: 3px solid $color-primary;
+  border-right: 3px solid $color-primary;
+}
+.btn-1:hover::after,
+.btn-1:hover::before {
+  width: 105%;
+  height: 105%;
+}
+
+// Btn 2
+.btn-2 {
+  font-size: 1.8rem;
+  color: $color-primary;
+  padding: 10px 30px;
+  transition: all 0.5s ease-in-out 0.3s;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.199);
+  background-color: #fff;
+  cursor: pointer;
+  overflow: hidden;
+}
+.btn-2::before,
+.btn-2::after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  background-color: $color-primary;
+  transition: all 0.5s ease-in-out;
+}
+.btn-2::before {
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+}
+.btn-2::after {
+  bottom: 0;
+  right: 0;
+  transform: translateX(100%);
+}
+.btn-2:hover::before,
+.btn-2:hover::after {
+  transform: translateX(0);
+}
+.btn-2 span::before,
+.btn-2 span::after {
+  content: "";
+  width: 2px;
+  height: 100%;
+  position: absolute;
+  background-color: $color-primary;
+  transition: all 0.5s ease-in-out;
+}
+.btn-2 span::before {
+  bottom: 0;
+  left: 0;
+  transform: translateY(100%);
+}
+.btn-2 span::after {
+  top: 0;
+  right: 0;
+  transform: translateY(-100%);
+}
+.btn-2:hover span::before,
+.btn-2:hover span::after {
+  transform: translateY(0);
+}
+// Back button
+.back {
+  display: block;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  fill: $color-primary;
+  cursor: pointer;
+  @media print {
+    display: none;
+  }
+}
+// Btn clicked effect
+.btn-1:active,
+.btn-2:active {
+  transform: translateY(-3px);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.432);
+  transition: all 0.4s;
+}
