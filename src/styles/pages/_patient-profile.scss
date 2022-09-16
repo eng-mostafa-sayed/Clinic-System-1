@@ -4,7 +4,8 @@ body {
   }
 }
 .patient {
-  width: 100%;
+  max-width: 800px;
+
   min-height: 100%;
   display: flex;
   justify-content: center;
