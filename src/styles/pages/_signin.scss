@@ -10,7 +10,8 @@
     background-color: $color-secondary-1;
     color: #fff;
     height: auto;
-    width: 30%;
+    min-width: 290px;
+    max-width: 350px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.459);
     border-radius: 5px;
     h1 {

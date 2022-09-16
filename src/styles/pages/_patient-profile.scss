@@ -10,11 +10,12 @@ body {
   justify-content: center;
   align-items: center;
   margin: 5rem auto;
+  padding: 20px;
   &__content {
     background-color: #fff;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.404);
     border-radius: 4px;
-    width: 800px;
+    width: 100%;
     @media print {
       box-shadow: none;
     }
@@ -92,7 +93,7 @@ body {
   }
   &__sight-1 {
     display: grid;
-    grid-template-columns: min-content min-content max-content min-content max-content;
+    grid-template-columns: min-content min-content 1fr min-content 1fr;
     column-gap: 2rem;
     row-gap: 2rem;
     padding: 2rem;

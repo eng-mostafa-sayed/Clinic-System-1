@@ -1,15 +1,19 @@
 .queue {
+  padding: 10px;
   .container {
     display: grid;
     grid-template-columns: repeat(2, minmax(40%, 1fr));
     grid-template-rows: repeat(2, minmax(1fr, max-content));
-    row-gap: 2rem;
+    gap: 2rem;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.356);
     padding: 2rem;
     border-radius: 10px;
     margin-bottom: 2rem;
     font-size: 1.8rem;
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
   }
   &__header {
     grid-column: 1 / -1;
