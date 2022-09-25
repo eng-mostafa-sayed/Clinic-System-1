@@ -7,7 +7,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  rootURL = 'http://localhost:3000/api';
+  rootURL = 'https://clinic-system-new.herokuapp.com/api';
   authStatusListener$ = new BehaviorSubject<boolean>(false);
   isAuthenticated = false;
   token: string = 'dasdasd';
@@ -22,20 +22,20 @@ export class AuthService {
 
   signin(username: String, password: String) {
     this.http
-      .post<any>(`${this.rootURL}/${username}/login`, {
-        name: username,
+      .post<any>(`${this.rootURL}/doctor/login`, {
+        name: 'doctor',
         password: password,
       })
       .subscribe({
         next: (res: any) => {
           this.token = res.data.token;
-          sessionStorage.setItem('token', this.token);
+          localStorage.setItem('token', this.token);
           this.isAuthenticated = true;
           this.authStatusListener$.next(true);
           if (username == 'doctor') {
-            this.router.navigate(['/doctor/patients']);
+            this.router.navigate(['/doctor/home']);
           } else {
-            this.router.navigate(['/nurse/patients']);
+            this.router.navigate(['/nurse/home']);
           }
         },
         error: (err) => {
@@ -44,7 +44,7 @@ export class AuthService {
       });
   }
   autoAuth() {
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     if (!token) {
       return;
     }
@@ -63,7 +63,7 @@ export class AuthService {
     });
   }
   removeAuthData() {
-    sessionStorage.removeItem('token');
+    localStorage.removeItem('token');
     this.token = '';
     this.isAuthenticated = false;
     this.authStatusListener$.next(false);

@@ -5,11 +5,23 @@ import { RouterModule } from '@angular/router';
 
 import { TableModule } from 'primeng/table';
 import { PatientsComponent } from './patients/patients.component';
-import { BackComponent } from './back/back.component';
+import { HomeComponent } from './home/home.component';
+import { PatientProfileComponent } from './patient-profile/patient-profile.component';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
-  declarations: [PatientsComponent, BackComponent],
+  declarations: [
+    PatientsComponent,
+    HomeComponent,
+    PatientProfileComponent,
+    NavComponent,
+  ],
   imports: [TableModule, ReactiveFormsModule, CommonModule, RouterModule],
-  exports: [PatientsComponent, BackComponent],
+  exports: [
+    PatientsComponent,
+    HomeComponent,
+    PatientProfileComponent,
+    NavComponent,
+  ],
 })
 export class SharedModule {}

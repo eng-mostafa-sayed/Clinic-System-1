@@ -1,25 +1,32 @@
+<app-nav Header="Add New Patient" [Back]="true" [Route]="'/nurse/home'">
+</app-nav>
 <div class="add-patient">
-  <form class="add-patient__form">
+  <form
+    class="add-patient__form"
+    (ngSubmit)="submit()"
+    [formGroup]="newPatientForm"
+  >
     <label for="name">Name</label>
-    <input type="text" class="input" id="name" />
+    <input formControlName="name" type="text" class="input" id="name" />
 
     <label for="phone"> Phone </label>
-    <input type="text" class="input" id="phone" />
+    <input formControlName="phoneNumber" type="text" class="input" id="phone" />
 
     <label for="age">Age</label>
-    <input type="text" class="input" id="age" />
+    <input formControlName="age" type="text" class="input" id="age" />
 
-    <label for="gender">gender</label>
-    <select name="gender" id="gender" class="input">
-      <option value="male">Male</option>
-      <option value="feale">Female</option>
+    <label for="gender">Gender</label>
+    <select formControlName="gender" id="gender" class="input">
+      <option value="male" [ngValue]="newPatientForm.value.gender">Male</option>
+      <option value="female">Female</option>
     </select>
 
-    <label for="doctor">Doctor</label>
-    <select name="doctor" id="doctor" class="input">
-      <option [value]="doctorEassmId">Dr.Essam</option>
+    <label for="doctorId">Doctor</label>
+    <select formControlName="_id" id="doctorId" class="input">
+      <option [value]="doctorEassmId" [ngValue]="newPatientForm.value._id">
+        Dr.Essam
+      </option>
     </select>
-    <div class="btn-1">Save</div>
+    <button class="btn-1" type="submit">Save</button>
   </form>
 </div>
-<app-back routerLink="../"></app-back>

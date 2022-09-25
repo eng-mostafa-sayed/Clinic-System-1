@@ -8,10 +8,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LandingComponent } from './landing/landing.component';
-import { SigninComponent } from './signin/signin.component';
+import { SigninComponent } from './auth/signin/signin.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
+import { PatientsHistoryComponent } from './patients-history/patients-history.component';
+import { SharedModule } from './shared/shared.module';
 @NgModule({
-  declarations: [AppComponent, LandingComponent, SigninComponent],
+  declarations: [
+    AppComponent,
+    LandingComponent,
+    SigninComponent,
+    PatientsHistoryComponent,
+  ],
   imports: [
     AppRoutingModule,
     HttpClientModule,
@@ -19,6 +26,7 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     TableModule,
     ReactiveFormsModule,
     BrowserModule,
+    SharedModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

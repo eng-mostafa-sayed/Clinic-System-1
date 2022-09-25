@@ -10,7 +10,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 5rem auto;
+  margin: 0 auto;
   padding: 20px;
   &__content {
     background-color: #fff;
@@ -58,14 +58,14 @@ body {
     row-gap: 2rem;
     column-gap: 2rem;
   }
-  &__name {
-  }
-  &__date {
-  }
-  &__age {
-  }
-  &__phone {
-  }
+  // &__name {
+  // }
+  // &__date {
+  // }
+  // &__age {
+  // }
+  // &__phone {
+  // }
   &__gender {
     @media print {
       display: none;
@@ -84,7 +84,6 @@ body {
       column-gap: 5rem;
       padding: 5rem 2rem;
       .btn-1 {
-        width: 20%;
         margin-left: auto;
       }
       @media print {

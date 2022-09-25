@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './landing/landing.component';
-import { SigninComponent } from './signin/signin.component';
+import { SigninComponent } from './auth/signin/signin.component';
 
 const routes: Routes = [
   {
@@ -30,8 +30,8 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: SigninComponent,
-    data: { username: 'doctor' },
+    redirectTo: 'doctor/signin',
+    pathMatch: 'full',
   },
 ];
 

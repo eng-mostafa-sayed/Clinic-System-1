@@ -1,5 +1,5 @@
 export class Patient {
-  'patientID': string;
+  '_id': string;
   'name': string;
   'age': number;
   'fileNumber': number;

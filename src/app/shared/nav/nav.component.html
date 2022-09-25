@@ -1,0 +1,18 @@
+<div class="nav">
+  <div class="container">
+    <div class="back" *ngIf="Back" [routerLink]="Route">
+      <i class="fa-solid fa-circle-left back"></i>
+    </div>
+    <h1>{{ Header }}</h1>
+    <div
+      class="btn-1"
+      routerLink="../patients"
+      *ngIf="Type === 'nurse' || Type === 'doctor'"
+    >
+      View All Patients
+    </div>
+    <div class="btn-1" routerLink="../add" *ngIf="Type === 'nurse'">
+      Add New Patient
+    </div>
+  </div>
+</div>

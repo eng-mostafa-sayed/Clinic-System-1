@@ -8,7 +8,6 @@
       [rowsPerPageOptions]="[10, 15, 20]"
       sortField="date"
       [sortOrder]="-1"
-      tyleClass="p-datatable-gridlines"
     >
       <ng-template pTemplate="caption">
         Treated Patients ({{ patientsLength }})
@@ -16,60 +15,34 @@
       <ng-template pTemplate="header">
         <tr>
           <th pSortableColumn="date">
-            Date
-            <p-columnFilter
-              type="date"
-              field="date"
-              display="menu"
-            ></p-columnFilter>
-            <p-sortIcon field="date"></p-sortIcon>
+            <div class="table__title">Date</div>
+            <p-columnFilter type="date" field="date"></p-columnFilter>
+            <!-- <p-sortIcon field="date"></p-sortIcon> -->
           </th>
-          <th pSortableColumn="patientID">
-            Patient ID
-            <p-columnFilter
-              type="text"
-              field="paitentID"
-              display="menu"
-            ></p-columnFilter>
-            <p-sortIcon field="patientID"></p-sortIcon>
+          <th>
+            <div class="table__title">ID</div>
+            <p-columnFilter type="text" field="paitentID"></p-columnFilter>
+            <!-- <p-sortIcon field="_id"></p-sortIcon> -->
           </th>
-
-          <th pSortableColumn="name">
-            Patient name
-            <p-columnFilter
-              type="text"
-              field="name"
-              display="menu"
-            ></p-columnFilter>
-            <p-sortIcon field="name"></p-sortIcon>
+          <th>
+            <div class="table__title">Name</div>
+            <p-columnFilter type="text" field="name"></p-columnFilter>
+            <!-- <p-sortIcon field="name"></p-sortIcon> -->
           </th>
-
-          <th pSortableColumn="phone">
-            Phone number
-            <p-columnFilter
-              type="number"
-              field="phone"
-              display="menu"
-            ></p-columnFilter>
-            <p-sortIcon field="phone"></p-sortIcon>
+          <th>
+            <div class="table__title">Phone</div>
+            <p-columnFilter type="text" field="phone"></p-columnFilter>
+            <!-- <p-sortIcon field="phone"></p-sortIcon> -->
           </th>
-          <th pSortableColumn="age">
-            Age
-            <p-columnFilter
-              type="number"
-              field="age"
-              display="menu"
-            ></p-columnFilter>
-            <p-sortIcon field="age"></p-sortIcon>
+          <th>
+            <div class="table__title">Age</div>
+            <p-columnFilter type="text" field="age"></p-columnFilter>
+            <!-- <p-sortIcon field="age"></p-sortIcon> -->
           </th>
-          <th pSortableColumn="gender">
-            Gender
-            <p-columnFilter
-              type="text"
-              field="gender"
-              display="menu"
-            ></p-columnFilter>
-            <p-sortIcon field="gender"></p-sortIcon>
+          <th>
+            <div class="table__title">Gender</div>
+            <p-columnFilter type="text" field="gender"></p-columnFilter>
+            <!-- <p-sortIcon field="gender"></p-sortIcon> -->
           </th>
           <th>Action</th>
         </tr>
@@ -81,28 +54,28 @@
             {{ patient.date | date: "medium" }}
           </td>
           <td>
-            <span class="p-column-title"> patientID</span>
-            {{ patient.patientID }}
+            <span class="p-column-title"> patient ID</span>
+            {{ patient._id }}
           </td>
           <td>
             <span class="p-column-title"> Name</span>
             {{ patient.name }}
           </td>
           <td>
-            <span class="p-column-title"> phone</span>
+            <span class="p-column-title"> Phone</span>
             {{ patient.phone }}
           </td>
           <td>
-            <span class="p-column-title"> age</span>
+            <span class="p-column-title"> Age</span>
             {{ patient.age }}
           </td>
           <td>
-            <span class="p-column-title"> gender</span>
+            <span class="p-column-title"> Gender</span>
             {{ patient.gender }}
           </td>
           <td>
             <span class="p-column-title">Action </span>
-            <span class="btn-1" routerLink="../patients/{{ patient.patientID }}"
+            <span class="btn-1" routerLink="../patients/{{ patient._id }}"
               >See Profile
             </span>
           </td>

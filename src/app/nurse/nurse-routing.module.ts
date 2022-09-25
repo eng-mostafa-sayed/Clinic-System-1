@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PatientsHistoryComponent } from '../patients-history/patients-history.component';
 import { AddPatientComponent } from './add-patient/add-patient.component';
 import { NurseHomeComponent } from './nurse-home/nurse-home.component';
-import { PatientReadOnlyComponent } from './patient-read-only/patient-read-only.component';
+import { PatientComponent } from './patient/patient.component';
 
 const routes: Routes = [
   {
@@ -20,11 +21,11 @@ const routes: Routes = [
   },
   {
     path: 'patients',
-    component: PatientReadOnlyComponent,
+    component: PatientsHistoryComponent,
   },
   {
     path: 'patients/:id',
-    component: PatientReadOnlyComponent,
+    component: PatientComponent,
   },
 ];
 

@@ -1,0 +1,34 @@
+<div class="queue">
+  <div class="container">
+    <h2 class="queue__header">
+      <span> Next patient</span>
+      <span class="btn-1" routerLink="../patients/122" *ngIf="type == 'doctor'">
+        Add Check</span
+      >
+    </h2>
+    <div>Name: {{ nextPatient.name }}</div>
+    <div>Age: {{ nextPatient.age }}</div>
+    <div>Gender: {{ nextPatient.gender }}</div>
+    <div>Phone: {{ nextPatient.phone }}</div>
+    <div>Date: {{ nextPatient.date | date: "medium" }}</div>
+  </div>
+</div>
+<div class="queue">
+  <div class="container">
+    <h2 class="queue__header">
+      <span>Waiting Room ({{ inqueuelength }})</span>
+    </h2>
+    <ng-container *ngFor="let patient of inqueuePatients">
+      <div>Name: {{ patient.name }}</div>
+      <div>Age: {{ patient.age }}</div>
+      <div>Gender: {{ patient.gender }}</div>
+      <div>Phone: {{ patient.phone }}</div>
+      <div>Date: {{ patient.date | date: "medium" }}</div>
+      <div class="queue__divider"></div>
+    </ng-container>
+  </div>
+</div>
+<app-patients
+  [patientsData]="treatedPatients"
+  [patientsLength]="treatedLength"
+></app-patients>

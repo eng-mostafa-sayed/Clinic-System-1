@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { Patient } from '../models/patient.model';
 
@@ -8,80 +7,46 @@ import { Patient } from '../models/patient.model';
   providedIn: 'root',
 })
 export class PatientsService {
-  private rootURL = 'https://clinic-system-production.up.railway.app/api';
-  patients: Patient[] = [
-    {
-      patientID: '21654',
-      name: 'mostafa',
-      age: 33,
-      fileNumber: 11,
-      phone: '01123648921',
-      gender: 'Male',
-      date: new Date(),
-      status: true,
-    },
-    {
-      patientID: '21654',
-      name: 'ahmed',
-      age: 33,
-      fileNumber: 11,
-      phone: '01123648921',
-      gender: 'Male',
-      date: new Date(),
-      status: true,
-    },
-    {
-      patientID: '21654',
-      name: 'ahmed',
-      age: 33,
-      fileNumber: 11,
-      phone: '01123648921',
-      gender: 'Male',
-      date: new Date(),
-      status: true,
-    },
-    {
-      patientID: '21654',
-      name: 'ahmed',
-      age: 33,
-      fileNumber: 11,
-      phone: '01123648921',
-      gender: 'Male',
-      date: new Date(),
-      status: false,
-    },
-    {
-      patientID: '21654',
-      name: 'ahmed',
-      age: 33,
-      fileNumber: 11,
-      phone: '01123648921',
-      gender: 'Male',
-      date: new Date(),
-      status: false,
-    },
-    {
-      patientID: '21654',
-      name: 'ahmed',
-      age: 33,
-      fileNumber: 11,
-      phone: '01123648921',
-      gender: 'Male',
-      date: new Date(),
-      status: false,
-    },
-  ];
+  private rootURL = 'https://clinic-system-new.herokuapp.com/api';
+  patients: Patient[] = [];
   constructor(private http: HttpClient, private authService: AuthService) {}
-  getPatients() {
-    // return this.http.get<Patient[]>(`${this.rootURL}/doctor/getpatients`);
-    return of(this.patients);
+
+  getAllPatients() {
+    return this.http.get<{ data: Patient[] }>(`${this.rootURL}/allpatients`);
   }
   getPatient(id: string) {
-    return this.http.get<Patient[]>(`${this.rootURL}/doctor/getpatients/${id}`);
+    return this.http.get<{ data: Patient }>(
+      `${this.rootURL}/allpatients/${id}`
+    );
   }
-  addPatient(data: any) {
-    return this.http.post<Patient[]>(`${this.rootURL}/patient/add`, {
+  getTodayPatients() {
+    return this.http.get<{ data: Patient[] }>(
+      `${this.rootURL}/allpatients/last`
+    );
+  }
+  getWaitingList() {
+    return this.http.get<{ data: Patient[] }>(
+      `${this.rootURL}/allpatients/waiting`
+    );
+  }
+  addToWaitingList(id: string) {
+    return this.http.post(`${this.rootURL}/allpatients/waiting/${id}`, {});
+  }
+  upadtePatient(id: string) {
+    return this.http.put(`${this.rootURL}/allpatients/${id}`, {});
+  }
+  addNewPatient(data: Patient) {
+    return this.http.post(`${this.rootURL}/allpatients`, {
       data,
+    });
+  }
+  deletePatient(data: any) {
+    return this.http.delete(`${this.rootURL}/allpatients`);
+  }
+  forgetPassword(username: string, password: string) {
+    return this.http.post<any>(`${this.rootURL}/doctor/forgetpassword`, {
+      name: username,
+      password: password,
     });
   }
 }

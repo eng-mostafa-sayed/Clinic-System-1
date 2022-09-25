@@ -6,10 +6,10 @@ import { AddPatientComponent } from './add-patient/add-patient.component';
 import { NurseRoutingModule } from './nurse-routing.module';
 import { NurseHomeComponent } from './nurse-home/nurse-home.component';
 import { SharedModule } from '../shared/shared.module';
-import { PatientReadOnlyComponent } from './patient-read-only/patient-read-only.component';
+import { PatientComponent } from './patient/patient.component';
 
 @NgModule({
-  declarations: [AddPatientComponent, NurseHomeComponent, PatientReadOnlyComponent],
+  declarations: [AddPatientComponent, NurseHomeComponent, PatientComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
