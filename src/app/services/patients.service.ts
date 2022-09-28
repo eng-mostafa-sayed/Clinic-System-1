@@ -35,9 +35,14 @@ export class PatientsService {
   upadtePatient(id: string) {
     return this.http.put(`${this.rootURL}/allpatients/${id}`, {});
   }
-  addNewPatient(data: Patient) {
-    return this.http.post(`${this.rootURL}/allpatients`, {
-      data,
+  addNewPatient(data: any) {
+    console.log(data);
+    return this.http.post<any>(`${this.rootURL}/allpatients`, {
+      name: data.name,
+      age: data.age,
+      phoneNumber: data.phoneNumber,
+      fileNo: data.fileNo,
+      gender: data.gender,
     });
   }
   deletePatient(data: any) {

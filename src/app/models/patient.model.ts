@@ -6,5 +6,6 @@ export class Patient {
   'phone': string;
   'gender': string;
   'date': Date;
+  'fileNo': string;
   'status': boolean;
 }

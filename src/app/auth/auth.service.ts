@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { LoadingService } from '../services/loading.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,11 @@ export class AuthService {
   isAuthenticated = false;
   token: string = 'dasdasd';
   authorizationHeader = `bearer ${this.token}`;
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private loadingService: LoadingService
+  ) {}
   getToken() {
     return this.token;
   }
@@ -32,6 +37,7 @@ export class AuthService {
           localStorage.setItem('token', this.token);
           this.isAuthenticated = true;
           this.authStatusListener$.next(true);
+          this.loadingService.isLoading.next(false);
           if (username == 'doctor') {
             this.router.navigate(['/doctor/home']);
           } else {
@@ -40,6 +46,7 @@ export class AuthService {
         },
         error: (err) => {
           console.log(err);
+          this.loadingService.isLoading.next(false);
         },
       });
   }

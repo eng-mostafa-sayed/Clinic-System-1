@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Patient } from 'src/app/models/patient.model';
+import { LoadingService } from 'src/app/services/loading.service';
 import { PatientsService } from 'src/app/services/patients.service';
 
 @Component({
@@ -16,18 +17,27 @@ export class PatientProfileComponent implements OnInit {
   constructor(
     private patientsService: PatientsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private loadingService: LoadingService
   ) {
     this.checkForm = new FormGroup({});
   }
 
   ngOnInit(): void {
+    this.loadingService.isLoading.next(true);
+
     this.route.params.subscribe((param) => {
-      this.patientsService.getPatient(param['id']).subscribe((res) => {
-        this.patientData = res.data;
+      this.patientsService.getPatient(param['id']).subscribe({
+        next: (res) => {
+          this.patientData = res.data;
+          this.loadingService.isLoading.next(false);
+        },
+        error: (error) => {
+          console.log(error);
+          this.loadingService.isLoading.next(false);
+        },
       });
     });
-    // this.patientsService.getPatient();
   }
   submit() {}
   print() {

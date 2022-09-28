@@ -7,6 +7,7 @@ import { NurseRoutingModule } from './nurse-routing.module';
 import { NurseHomeComponent } from './nurse-home/nurse-home.component';
 import { SharedModule } from '../shared/shared.module';
 import { PatientComponent } from './patient/patient.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AddPatientComponent, NurseHomeComponent, PatientComponent],
@@ -16,6 +17,7 @@ import { PatientComponent } from './patient/patient.component';
     TableModule,
     NurseRoutingModule,
     SharedModule,
+    FormsModule,
   ],
 })
 export class NurseModule {}

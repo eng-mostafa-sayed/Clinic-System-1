@@ -12,12 +12,14 @@ import { SigninComponent } from './auth/signin/signin.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { PatientsHistoryComponent } from './patients-history/patients-history.component';
 import { SharedModule } from './shared/shared.module';
+import { LoadingComponent } from './loading/loading.component';
 @NgModule({
   declarations: [
     AppComponent,
     LandingComponent,
     SigninComponent,
     PatientsHistoryComponent,
+    LoadingComponent,
   ],
   imports: [
     AppRoutingModule,

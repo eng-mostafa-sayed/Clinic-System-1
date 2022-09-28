@@ -10,7 +10,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  margin: 5rem auto;
   padding: 20px;
   &__content {
     background-color: #fff;
@@ -66,17 +66,12 @@ body {
   // }
   // &__phone {
   // }
-  &__gender {
-    @media print {
-      display: none;
-    }
-  }
-  &__id {
-    @media print {
-      display: none;
-    }
-  }
+  // &__gender {
+  // }
+  // &__id {
+  // }
   &__form {
+    overflow: hidden;
     &__action {
       display: flex;
       justify-content: space-between;
@@ -125,7 +120,10 @@ body {
     }
     textarea {
       display: block;
-      width: 100%;
+      max-width: 100%;
+      min-width: 20%;
+      min-height: 50px;
+      transition: none;
     }
   }
 }

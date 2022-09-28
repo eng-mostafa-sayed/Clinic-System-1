@@ -21,12 +21,24 @@
       <option value="female">Female</option>
     </select>
 
-    <label for="doctorId">Doctor</label>
+    <div>
+      <span>Add to waiting room</span>
+      <input
+        type="checkbox"
+        [(ngModel)]="isWaiting"
+        [ngModelOptions]="{ standalone: true }"
+        id="isWaiting"
+      />
+      <label for="isWaiting" class="waiting">
+        <i class="fa-solid fa-check"></i>
+      </label>
+    </div>
+    <!-- <label for="doctorId">Doctor</label>
     <select formControlName="_id" id="doctorId" class="input">
       <option [value]="doctorEassmId" [ngValue]="newPatientForm.value._id">
         Dr.Essam
       </option>
-    </select>
+    </select> -->
     <button class="btn-1" type="submit">Save</button>
   </form>
 </div>

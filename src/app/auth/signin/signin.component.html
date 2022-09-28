@@ -1,7 +1,14 @@
 <div class="signin">
   <div class="signin__box">
     <h1>Signin</h1>
+
     <form (ngSubmit)="login()" [formGroup]="loginForm">
+      <select class="input" formControlName="username">
+        <option value="doctor" [ngValue]="loginForm.value.username">
+          Doctor
+        </option>
+        <option value="nurse">Nurse</option>
+      </select>
       <label for="password">Password</label>
       <input
         class="input"

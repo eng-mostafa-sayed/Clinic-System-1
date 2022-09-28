@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { LoadingService } from 'src/app/services/loading.service';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -10,22 +11,23 @@ import { AuthService } from '../auth.service';
 })
 export class SigninComponent implements OnInit {
   loginForm: FormGroup;
-  username = '';
   constructor(
     private authService: AuthService,
-    private activatedroute: ActivatedRoute
+    private loadingService: LoadingService
   ) {
     this.loginForm = new FormGroup({
       password: new FormControl(null, Validators.required),
+      username: new FormControl('doctor', Validators.required),
     });
   }
 
-  ngOnInit(): void {
-    this.activatedroute.data.subscribe((data) => {
-      this.username = data['username'];
-    });
-  }
+  ngOnInit(): void {}
   login() {
-    this.authService.signin(this.username, this.loginForm.value.password);
+    console.log(this.loginForm.value);
+    this.loadingService.isLoading.next(true);
+    this.authService.signin(
+      this.loginForm.value.username,
+      this.loginForm.value.password
+    );
   }
 }

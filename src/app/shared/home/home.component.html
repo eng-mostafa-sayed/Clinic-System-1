@@ -2,15 +2,21 @@
   <div class="container">
     <h2 class="queue__header">
       <span> Next patient</span>
-      <span class="btn-1" routerLink="../patients/122" *ngIf="type == 'doctor'">
+      <span
+        class="btn-1"
+        routerLink="../patients/{{ nextPatient._id }}"
+        *ngIf="type == 'doctor'"
+      >
         Add Check</span
       >
     </h2>
-    <div>Name: {{ nextPatient.name }}</div>
-    <div>Age: {{ nextPatient.age }}</div>
-    <div>Gender: {{ nextPatient.gender }}</div>
-    <div>Phone: {{ nextPatient.phone }}</div>
-    <div>Date: {{ nextPatient.date | date: "medium" }}</div>
+    <div><span class="sub">Name:</span>{{ nextPatient.name }}</div>
+    <div><span class="sub">Age:</span>{{ nextPatient.age }}</div>
+    <div><span class="sub">Gender:</span>{{ nextPatient.gender }}</div>
+    <div><span class="sub">Phone:</span>{{ nextPatient.phone }}</div>
+    <div>
+      <span class="sub">Date:</span>{{ nextPatient.date | date: "medium" }}
+    </div>
   </div>
 </div>
 <div class="queue">
@@ -19,11 +25,13 @@
       <span>Waiting Room ({{ inqueuelength }})</span>
     </h2>
     <ng-container *ngFor="let patient of inqueuePatients">
-      <div>Name: {{ patient.name }}</div>
-      <div>Age: {{ patient.age }}</div>
-      <div>Gender: {{ patient.gender }}</div>
-      <div>Phone: {{ patient.phone }}</div>
-      <div>Date: {{ patient.date | date: "medium" }}</div>
+      <div><span class="sub">Name:</span>{{ patient.name }}</div>
+      <div><span class="sub">Age:</span>{{ patient.age }}</div>
+      <div><span class="sub">Gender:</span>{{ patient.gender }}</div>
+      <div><span class="sub">Phone:</span>{{ patient.phone }}</div>
+      <div>
+        <span class="sub">Date:</span>{{ patient.date | date: "medium" }}
+      </div>
       <div class="queue__divider"></div>
     </ng-container>
   </div>
