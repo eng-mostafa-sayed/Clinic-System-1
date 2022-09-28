@@ -3,7 +3,7 @@ export class Patient {
   'name': string;
   'age': number;
   'fileNumber': number;
-  'phone': string;
+  'phoneNumber': string;
   'gender': string;
   'date': Date;
   'fileNo': string;
