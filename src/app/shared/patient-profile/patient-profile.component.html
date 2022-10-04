@@ -15,7 +15,7 @@
     <form
       class="patient__form"
       (ngSubmit)="submit()"
-      ngForm="patientForm"
+      [formGroup]="patientForm"
       [ngClass]="{ disabled: type == 'nurse' }"
     >
       <div class="patient__sight">
@@ -27,6 +27,7 @@
             class="input"
             type="number"
             id="far"
+            formControlName="far"
           />
           <label for="far">Near </label>
           <input
@@ -34,6 +35,7 @@
             class="input"
             type="number"
             id="near"
+            formControlName="near"
           />
           <label for="RT">BCVA: </label>
           <label for="RT">RT </label>
@@ -42,6 +44,7 @@
             class="input"
             type="number"
             id="RT"
+            formControlName="rt"
           />
           <label for="LT">LT</label>
           <input
@@ -49,6 +52,7 @@
             class="input"
             type="number"
             id="LT"
+            formControlName="lt"
           />
         </div>
         <div class="patient__sight-2">
@@ -56,17 +60,17 @@
             <thead>
               <tr>
                 <td></td>
-                <td colspan="3">Left</td>
                 <td colspan="3">Right</td>
+                <td colspan="3">Left</td>
               </tr>
               <tr>
                 <td></td>
                 <td>Sph</td>
+                <td>Cyl</td>
+                <td>Axis</td>
                 <td>Sph</td>
-                <td>Sph</td>
-                <td>Sph</td>
-                <td>Sph</td>
-                <td>Sph</td>
+                <td>Cyl</td>
+                <td>Axis</td>
               </tr>
             </thead>
             <tbody>
@@ -78,6 +82,7 @@
                     type="number"
                     step="0.5"
                     class="input"
+                    formControlName="RDsph"
                   />
                 </td>
                 <td>
@@ -86,6 +91,7 @@
                     type="number"
                     step="0.5"
                     class="input"
+                    formControlName="RDcyl"
                   />
                 </td>
                 <td>
@@ -94,6 +100,7 @@
                     type="number"
                     step="0.5"
                     class="input"
+                    formControlName="RDaxis"
                   />
                 </td>
                 <td>
@@ -102,6 +109,7 @@
                     type="number"
                     step="0.5"
                     class="input"
+                    formControlName="LDsph"
                   />
                 </td>
                 <td>
@@ -110,6 +118,7 @@
                     type="number"
                     step="0.5"
                     class="input"
+                    formControlName="LDcyl"
                   />
                 </td>
                 <td>
@@ -118,6 +127,7 @@
                     type="number"
                     step="0.5"
                     class="input"
+                    formControlName="LDaxis"
                   />
                 </td>
               </tr>
@@ -129,6 +139,7 @@
                     type="number"
                     step="0.5"
                     class="input"
+                    formControlName="RRsph"
                   />
                 </td>
                 <td>
@@ -137,6 +148,7 @@
                     type="number"
                     step="0.5"
                     class="input"
+                    formControlName="RRcyl"
                   />
                 </td>
                 <td>
@@ -145,6 +157,7 @@
                     type="number"
                     step="0.5"
                     class="input"
+                    formControlName="RRaxis"
                   />
                 </td>
                 <td>
@@ -153,6 +166,7 @@
                     type="number"
                     step="0.5"
                     class="input"
+                    formControlName="LRsph"
                   />
                 </td>
                 <td>
@@ -161,6 +175,7 @@
                     type="number"
                     step="0.5"
                     class="input"
+                    formControlName="LRcyl"
                   />
                 </td>
                 <td>
@@ -169,6 +184,7 @@
                     type="number"
                     step="0.5"
                     class="input"
+                    formControlName="LRaxis"
                   />
                 </td>
               </tr>
@@ -181,61 +197,47 @@
         <h3>Medications</h3>
         <h3>Weeks</h3>
         <h3>Per Day</h3>
-        <select [disabled]="type == 'nurse'" class="input" name="tears" id="">
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-          <option value="option4">Option 4</option>
-          <option value="option5">Option 5</option>
-        </select>
-        <select [disabled]="type == 'nurse'" class="input" name="tears" id="">
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-          <option value="option4">Option 4</option>
-          <option value="option5">Option 5</option>
-        </select>
-        <input [disabled]="type == 'nurse'" class="input" type="number" />
-        <input [disabled]="type == 'nurse'" class="input" type="number" />
-        <select [disabled]="type == 'nurse'" class="input" name="tears" id="">
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-          <option value="option4">Option 4</option>
-          <option value="option5">Option 5</option>
-        </select>
-        <select [disabled]="type == 'nurse'" class="input" name="tears" id="">
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-          <option value="option4">Option 4</option>
-          <option value="option5">Option 5</option>
-        </select>
-        <input [disabled]="type == 'nurse'" class="input" type="number" />
-        <input [disabled]="type == 'nurse'" class="input" type="number" />
-        <select [disabled]="type == 'nurse'" class="input" name="tears" id="">
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-          <option value="option4">Option 4</option>
-          <option value="option5">Option 5</option>
-        </select>
-        <select [disabled]="type == 'nurse'" class="input" name="tears" id="">
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-          <option value="option4">Option 4</option>
-          <option value="option5">Option 5</option>
-        </select>
-        <input [disabled]="type == 'nurse'" class="input" type="number" />
-        <input [disabled]="type == 'nurse'" class="input" type="number" />
+        <ng-container *ngFor="let item of items">
+          <select
+            [disabled]="type == 'nurse'"
+            class="input"
+            [(ngModel)]="item.selectedType"
+            [ngModelOptions]="{ standalone: true }"
+          >
+            <option *ngFor="let type of drugTypes" [ngValue]="type">
+              {{ type }}
+            </option>
+          </select>
+
+          <select
+            [disabled]="type == 'nurse'"
+            class="input"
+            [(ngModel)]="item.name"
+            [ngModelOptions]="{ standalone: true }"
+          >
+            <ng-container *ngFor="let drug of drugs">
+              <option
+                [ngValue]="drug.name"
+                *ngIf="drug.type === item.selectedType"
+              >
+                {{ drug.name }}
+              </option>
+            </ng-container>
+          </select>
+          <input [disabled]="type == 'nurse'" class="input" type="number" />
+          <input [disabled]="type == 'nurse'" class="input" type="number" />
+        </ng-container>
       </div>
+      <button class="btn-1" type="button" (click)="addNewDrug()">
+        Add new
+      </button>
       <div class="notes">
         <span>Notes:</span>
         <textarea
           [disabled]="type == 'nurse'"
           class="input"
           rows="4"
+          formControlName="notes"
         ></textarea>
       </div>
       <div class="patient__form__action">

@@ -1,0 +1,129 @@
+<app-nav [Header]="'Manage Drugs'" [Back]="true" [Route]="'../home'"> </app-nav>
+
+<div class="container">
+  <form
+    (ngSubmit)="submit()"
+    [formGroup]="drugForm"
+    style="
+      width: 700px;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    "
+  >
+    <label for="name">Name</label>
+    <input class="input" id="name" type="text" formControlName="name" />
+    <br />
+
+    <label for="type">Type</label>
+    <input class="input" id="type" type="text" formControlName="type" />
+    <button class="btn-1" style="margin-left: 30px">Add</button>
+  </form>
+  <div class="table">
+    <p-table
+      [value]="drugs"
+      dataKey="_id"
+      editMode="row"
+      responsiveLayout="stack"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Added on</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th style="width: 8rem"></th>
+        </tr>
+      </ng-template>
+      <ng-template
+        pTemplate="body"
+        let-drug
+        let-editing="editing"
+        let-ri="rowIndex"
+      >
+        <tr [pEditableRow]="drug">
+          <td>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="drug.createdAt" />
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{ drug.createdAt }}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+          <td>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="drug.name"
+                  required
+                />
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{ drug.name }}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+          <td>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input
+                  pInputText
+                  type="text"
+                  [(ngModel)]="drug.type"
+                  required
+                />
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{ drug.type }}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+
+          <td style="text-align: center">
+            <button
+              *ngIf="!editing"
+              pButton
+              pRipple
+              type="button"
+              pInitEditableRow
+              icon="pi pi-pencil"
+              (click)="onRowEditInit(drug)"
+              class="p-button-rounded p-button-text"
+            >
+              edit
+            </button>
+            <button
+              *ngIf="editing"
+              pButton
+              pRipple
+              type="button"
+              pSaveEditableRow
+              icon="pi pi-check"
+              (click)="onRowEditSave(drug)"
+              class="p-button-rounded p-button-text p-button-success mr-2"
+            >
+              save
+            </button>
+            <button
+              *ngIf="editing"
+              pButton
+              pRipple
+              type="button"
+              pCancelEditableRow
+              icon="pi pi-times"
+              (click)="onRowEditCancel(drug, ri)"
+              class="p-button-rounded p-button-text p-button-danger"
+            >
+              cancel
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

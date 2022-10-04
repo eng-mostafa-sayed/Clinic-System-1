@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoadingService } from 'src/app/services/loading.service';
 import { PatientsService } from 'src/app/services/patients.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class AddPatientComponent implements OnInit {
   isWaiting = true;
   constructor(
     private patientsService: PatientsService,
+    private loadingService: LoadingService,
     private router: Router
   ) {
     this.newPatientForm = new FormGroup({
@@ -27,7 +29,7 @@ export class AddPatientComponent implements OnInit {
 
   ngOnInit(): void {}
   submit() {
-    this.newPatientForm;
+    this.loadingService.isLoading.next(true);
     if (this.isWaiting) {
       this.patientsService.getAllPatients().subscribe((res) => {
         let patientNumber = res.data.length;
@@ -45,10 +47,27 @@ export class AddPatientComponent implements OnInit {
           },
           error: (err) => {
             console.log(err);
+            this.loadingService.isLoading.next(true);
           },
         });
       });
     } else {
+      this.patientsService.getAllPatients().subscribe((res) => {
+        let patientNumber = res.data.length;
+        const patient = {
+          ...this.newPatientForm.value,
+          fileNo: '0' + (patientNumber + 1),
+        };
+        this.patientsService.addNewPatient(patient).subscribe({
+          next: (res) => {
+            this.router.navigateByUrl('/nurse/home');
+          },
+          error: (err) => {
+            console.log(err);
+            this.loadingService.isLoading.next(true);
+          },
+        });
+      });
     }
   }
 }

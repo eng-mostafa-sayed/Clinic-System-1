@@ -32,8 +32,8 @@ export class PatientsService {
   addToWaitingList(id: string) {
     return this.http.post(`${this.rootURL}/allpatients/waiting/${id}`, {});
   }
-  upadtePatient(id: string) {
-    return this.http.put(`${this.rootURL}/allpatients/${id}`, {});
+  upadtePatient(patient: Patient) {
+    return this.http.put(`${this.rootURL}/allpatients/v/${patient._id}`, {});
   }
   addNewPatient(data: any) {
     console.log(data);

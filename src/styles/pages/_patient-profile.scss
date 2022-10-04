@@ -5,13 +5,16 @@ body {
 }
 .patient {
   max-width: 800px;
-
   min-height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 5rem auto;
   padding: 20px;
+  @media print {
+    margin: 0 auto;
+    padding: 0px;
+  }
   &__content {
     background-color: #fff;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.404);
@@ -52,23 +55,26 @@ body {
     padding: 2.2rem;
     padding-top: 6.2rem;
     margin-top: -4rem;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     display: grid;
     grid-template-columns: repeat(2, minmax(50%, 1fr));
     row-gap: 2rem;
     column-gap: 2rem;
   }
+  &__age,
+  &__gender,
+  &__id {
+    @media print {
+      display: none;
+    }
+  }
   // &__name {
   // }
   // &__date {
   // }
-  // &__age {
-  // }
   // &__phone {
   // }
-  // &__gender {
-  // }
-  // &__id {
+  // &__fileNo{
   // }
   &__form {
     overflow: hidden;
@@ -111,6 +117,11 @@ body {
     row-gap: 2rem;
     padding: 2rem;
   }
+  .btn-1 {
+    display: block;
+    margin-left: auto;
+    margin-right: 20px;
+  }
   .notes {
     padding: 2rem;
     span {
@@ -124,6 +135,19 @@ body {
       min-width: 20%;
       min-height: 50px;
       transition: none;
+    }
+  }
+  .btn-1 {
+    @media print {
+      display: none;
+    }
+  }
+  .input {
+    @media print {
+      box-shadow: none;
+      border: none;
+      outline: none;
+      appearance: none;
     }
   }
 }

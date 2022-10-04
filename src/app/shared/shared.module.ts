@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { TableModule } from 'primeng/table';
@@ -16,7 +16,13 @@ import { NavComponent } from './nav/nav.component';
     PatientProfileComponent,
     NavComponent,
   ],
-  imports: [TableModule, ReactiveFormsModule, CommonModule, RouterModule],
+  imports: [
+    TableModule,
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule,
+    RouterModule,
+  ],
   exports: [
     PatientsComponent,
     HomeComponent,
