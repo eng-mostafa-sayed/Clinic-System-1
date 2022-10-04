@@ -18,42 +18,18 @@
       [formGroup]="patientForm"
       [ngClass]="{ disabled: type == 'nurse' }"
     >
-      <div class="patient__sight">
+      <div class="patient__sight" [ngClass]="{ hide: !isSight }">
         <div class="patient__sight-1">
           <label>LP.D: </label>
           <label for="far">Far</label>
-          <input
-            [disabled]="type == 'nurse'"
-            class="input"
-            type="number"
-            id="far"
-            formControlName="far"
-          />
+          <input class="input" type="number" id="far" formControlName="far" />
           <label for="far">Near </label>
-          <input
-            [disabled]="type == 'nurse'"
-            class="input"
-            type="number"
-            id="near"
-            formControlName="near"
-          />
+          <input class="input" type="number" id="near" formControlName="near" />
           <label for="RT">BCVA: </label>
           <label for="RT">RT </label>
-          <input
-            [disabled]="type == 'nurse'"
-            class="input"
-            type="number"
-            id="RT"
-            formControlName="rt"
-          />
+          <input class="input" type="number" id="RT" formControlName="rt" />
           <label for="LT">LT</label>
-          <input
-            [disabled]="type == 'nurse'"
-            class="input"
-            type="number"
-            id="LT"
-            formControlName="lt"
-          />
+          <input class="input" type="number" id="LT" formControlName="lt" />
         </div>
         <div class="patient__sight-2">
           <table>
@@ -78,7 +54,6 @@
                 <td>D</td>
                 <td>
                   <input
-                    [disabled]="type == 'nurse'"
                     type="number"
                     step="0.5"
                     class="input"
@@ -87,7 +62,6 @@
                 </td>
                 <td>
                   <input
-                    [disabled]="type == 'nurse'"
                     type="number"
                     step="0.5"
                     class="input"
@@ -96,7 +70,6 @@
                 </td>
                 <td>
                   <input
-                    [disabled]="type == 'nurse'"
                     type="number"
                     step="0.5"
                     class="input"
@@ -105,7 +78,6 @@
                 </td>
                 <td>
                   <input
-                    [disabled]="type == 'nurse'"
                     type="number"
                     step="0.5"
                     class="input"
@@ -114,7 +86,6 @@
                 </td>
                 <td>
                   <input
-                    [disabled]="type == 'nurse'"
                     type="number"
                     step="0.5"
                     class="input"
@@ -123,7 +94,6 @@
                 </td>
                 <td>
                   <input
-                    [disabled]="type == 'nurse'"
                     type="number"
                     step="0.5"
                     class="input"
@@ -135,7 +105,6 @@
                 <td>R</td>
                 <td>
                   <input
-                    [disabled]="type == 'nurse'"
                     type="number"
                     step="0.5"
                     class="input"
@@ -144,7 +113,6 @@
                 </td>
                 <td>
                   <input
-                    [disabled]="type == 'nurse'"
                     type="number"
                     step="0.5"
                     class="input"
@@ -153,7 +121,6 @@
                 </td>
                 <td>
                   <input
-                    [disabled]="type == 'nurse'"
                     type="number"
                     step="0.5"
                     class="input"
@@ -162,7 +129,6 @@
                 </td>
                 <td>
                   <input
-                    [disabled]="type == 'nurse'"
                     type="number"
                     step="0.5"
                     class="input"
@@ -171,7 +137,6 @@
                 </td>
                 <td>
                   <input
-                    [disabled]="type == 'nurse'"
                     type="number"
                     step="0.5"
                     class="input"
@@ -180,7 +145,6 @@
                 </td>
                 <td>
                   <input
-                    [disabled]="type == 'nurse'"
                     type="number"
                     step="0.5"
                     class="input"
@@ -191,12 +155,23 @@
             </tbody>
           </table>
         </div>
+        <div class="notes">
+          <span>Notes:</span>
+          <textarea class="input" rows="4" formControlName="notes"></textarea>
+        </div>
+        <div class="patient__form__action">
+          <button class="btn-1" *ngIf="type == 'doctor'">Save</button>
+          <button type="button" class="btn-2" (click)="printSigt()">
+            <span></span>Print
+          </button>
+        </div>
       </div>
-      <div class="patient__meds">
+      <div class="patient__meds" [ngClass]="{ hide: isSight }">
         <h3>Type</h3>
+        <span class="R"></span>
         <h3>Medications</h3>
-        <h3>Weeks</h3>
-        <h3>Per Day</h3>
+        <h3>No.Takes</h3>
+        <h3>Peroid</h3>
         <ng-container *ngFor="let item of items">
           <select
             [disabled]="type == 'nurse'"
@@ -208,13 +183,14 @@
               {{ type }}
             </option>
           </select>
-
+          <span class="R">R/</span>
           <select
             [disabled]="type == 'nurse'"
             class="input"
             [(ngModel)]="item.name"
             [ngModelOptions]="{ standalone: true }"
           >
+            <option value="" selected>Select Drug</option>
             <ng-container *ngFor="let drug of drugs">
               <option
                 [ngValue]="drug.name"
@@ -229,16 +205,12 @@
         </ng-container>
       </div>
       <button class="btn-1" type="button" (click)="addNewDrug()">
+        <!-- <i class="fa-solid fa-kit-medical"></i> -->
         Add new
       </button>
       <div class="notes">
         <span>Notes:</span>
-        <textarea
-          [disabled]="type == 'nurse'"
-          class="input"
-          rows="4"
-          formControlName="notes"
-        ></textarea>
+        <textarea class="input" rows="4" formControlName="notes"></textarea>
       </div>
       <div class="patient__form__action">
         <button class="btn-1" *ngIf="type == 'doctor'">Save</button>
@@ -251,7 +223,7 @@
           Appointment
         </button>
 
-        <button type="button" class="btn-2" (click)="print()">
+        <button type="button" class="btn-2" (click)="printMeds()">
           <span></span>Print
         </button>
       </div>

@@ -4,6 +4,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { TableModule } from 'primeng/table';
+import { DropdownModule } from 'primeng/dropdown';
+
 import { PatientsComponent } from './patients/patients.component';
 import { HomeComponent } from './home/home.component';
 import { PatientProfileComponent } from './patient-profile/patient-profile.component';
@@ -18,6 +20,7 @@ import { NavComponent } from './nav/nav.component';
   ],
   imports: [
     TableModule,
+    DropdownModule,
     ReactiveFormsModule,
     FormsModule,
     CommonModule,

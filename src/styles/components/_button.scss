@@ -113,3 +113,17 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.432);
   transition: all 0.4s;
 }
+
+.btn-3 {
+  font-size: 1.8rem;
+  color: #fff;
+  background-color: $color-primary;
+  border-radius: 4px;
+  padding: 10px 30px;
+  transition: all 0.5s ease-in-out;
+  position: relative;
+  cursor: pointer;
+}
+.btn-3:hover {
+  background-color: $color-secondary-1;
+}
