@@ -1,7 +1,7 @@
 export class Drug {
-  'createdAt': Date;
+  'createdAt'?: Date;
   'name': string;
   'type': string;
-  'updatedAt': Date;
-  '_id': string;
+  'updatedAt'?: Date;
+  '_id'?: string;
 }

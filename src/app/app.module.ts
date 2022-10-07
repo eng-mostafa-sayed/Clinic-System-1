@@ -13,6 +13,8 @@ import { AuthInterceptor } from './auth/auth-interceptor';
 import { PatientsHistoryComponent } from './patients-history/patients-history.component';
 import { SharedModule } from './shared/shared.module';
 import { LoadingComponent } from './loading/loading.component';
+import { ConfirmationService } from 'primeng/api';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +34,7 @@ import { LoadingComponent } from './loading/loading.component';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    ConfirmationService,
   ],
   bootstrap: [AppComponent],
 })

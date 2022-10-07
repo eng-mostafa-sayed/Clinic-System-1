@@ -8,6 +8,7 @@ import { DocHomeComponent } from './doc-home/doc-home.component';
 import { ManageDrugsComponent } from './manage-drugs/manage-drugs.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [PatientComponent, DocHomeComponent, ManageDrugsComponent],
@@ -18,6 +19,7 @@ import { TableModule } from 'primeng/table';
     ReactiveFormsModule,
     FormsModule,
     TableModule,
+    ConfirmDialogModule,
   ],
 })
 export class DoctorModule {}

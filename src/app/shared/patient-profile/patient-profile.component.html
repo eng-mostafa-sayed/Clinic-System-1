@@ -1,9 +1,40 @@
 <app-nav Header="Patient Data" [Back]="true" [Route]="'../../home'"></app-nav>
 <div class="patient">
   <div class="patient__content">
-    <h1 class="patient__print">Dr.Mostafa Sayed</h1>
     <h1 class="patient__title">Patient Data</h1>
-    <div class="patient__header">
+    <div class="header" [ngClass]="{ printable: !isSight }">
+      <div class="en-data">
+        <span>DR.</span>
+        <strong>ESSAM KHEDR</strong>
+        <span> Consultant and Eye Surgeon </span>
+        <span>Member of the Egyptian Society of Catarct and Refraction </span>
+        <span>Laser therapy specialist</span>
+      </div>
+      <img src="../../../assets/eye.svg" alt="" />
+      <div class="ar-data">
+        <span>دكتور</span>
+        <strong>عصام خضر</strong>
+        <span>إستشارى وجراح العيون</span>
+        <span>عضو الجمعية المصرية للمياة البيضاء والانكسار</span>
+        <span>أخصائي العلاج بالليزر</span>
+      </div>
+    </div>
+    <div class="footer" [ngClass]="{ printable: !isSight }">
+      <div class="address">
+        <span> الإسماعلية-الشيخ زايد-برج الطلائع رقم</span>
+        <span>(٢١)</span>
+        <span> اول الشارع التجاري بجوار مسجد ابو المجد </span>
+        <span><i class="fa-solid fa-location-dot"></i></span>
+      </div>
+      <div class="phone">
+        ت العيادة: ۰٦٤/۳۱۱۳۳۹٥ - ۰۱۰۲۰۸۸۰۸٦۰
+        <i class="fa-solid fa-square-phone"></i>
+      </div>
+      <div style="text-align: center">
+        ( الاستشارة خلال اسبوع من تاريخ الكشف )
+      </div>
+    </div>
+    <div class="patient__data hide">
       <div class="patient__name">Name: {{ patientData.name }}</div>
       <div class="patient__date">Date: {{ patientData.date }}</div>
       <div class="patient__age">Age: {{ patientData.age }}</div>
@@ -20,6 +51,10 @@
     >
       <div class="patient__sight" [ngClass]="{ hide: !isSight }">
         <div class="patient__sight-1">
+          <div class="name">Name: {{ patientData.name }}</div>
+          <div class="date">
+            Date: {{ patientData.date | date: "d/M/yyyy" }}
+          </div>
           <label>LP.D: </label>
           <label for="far">Far</label>
           <input class="input" type="number" id="far" formControlName="far" />
@@ -30,6 +65,10 @@
           <input class="input" type="number" id="RT" formControlName="rt" />
           <label for="LT">LT</label>
           <input class="input" type="number" id="LT" formControlName="lt" />
+          <div>
+            <label for="notes">Notes:</label>
+            <input class="input" formControlName="notes" id="notes" />
+          </div>
         </div>
         <div class="patient__sight-2">
           <table>
@@ -155,10 +194,7 @@
             </tbody>
           </table>
         </div>
-        <div class="notes">
-          <span>Notes:</span>
-          <textarea class="input" rows="4" formControlName="notes"></textarea>
-        </div>
+
         <div class="patient__form__action">
           <button class="btn-1" *ngIf="type == 'doctor'">Save</button>
           <button type="button" class="btn-2" (click)="printSigt()">
@@ -167,22 +203,12 @@
         </div>
       </div>
       <div class="patient__meds" [ngClass]="{ hide: isSight }">
-        <h3>Type</h3>
         <span class="R"></span>
         <h3>Medications</h3>
+        <h3>Type</h3>
         <h3>No.Takes</h3>
-        <h3>Peroid</h3>
+        <h3>Period</h3>
         <ng-container *ngFor="let item of items">
-          <select
-            [disabled]="type == 'nurse'"
-            class="input"
-            [(ngModel)]="item.selectedType"
-            [ngModelOptions]="{ standalone: true }"
-          >
-            <option *ngFor="let type of drugTypes" [ngValue]="type">
-              {{ type }}
-            </option>
-          </select>
           <span class="R">R/</span>
           <select
             [disabled]="type == 'nurse'"
@@ -200,7 +226,22 @@
               </option>
             </ng-container>
           </select>
-          <input [disabled]="type == 'nurse'" class="input" type="number" />
+          <select
+            [disabled]="type == 'nurse'"
+            class="input"
+            [(ngModel)]="item.selectedType"
+            [ngModelOptions]="{ standalone: true }"
+          >
+            <option *ngFor="let type of drugTypes" [ngValue]="type">
+              {{ type }}
+            </option>
+          </select>
+          <input
+            [disabled]="type == 'nurse'"
+            class="input"
+            type="number"
+            min="1"
+          />
           <input [disabled]="type == 'nurse'" class="input" type="number" />
         </ng-container>
       </div>
@@ -208,7 +249,7 @@
         <!-- <i class="fa-solid fa-kit-medical"></i> -->
         Add new
       </button>
-      <div class="notes">
+      <div class="notes" [ngClass]="{ hide: isSight }">
         <span>Notes:</span>
         <textarea class="input" rows="4" formControlName="notes"></textarea>
       </div>
