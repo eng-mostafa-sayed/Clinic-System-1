@@ -14,6 +14,7 @@ import { PatientsHistoryComponent } from './patients-history/patients-history.co
 import { SharedModule } from './shared/shared.module';
 import { LoadingComponent } from './loading/loading.component';
 import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ConfirmationService } from 'primeng/api';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     ConfirmationService,
+    MessageService,
   ],
   bootstrap: [AppComponent],
 })

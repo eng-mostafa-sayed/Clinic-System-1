@@ -9,6 +9,7 @@ import { ManageDrugsComponent } from './manage-drugs/manage-drugs.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [PatientComponent, DocHomeComponent, ManageDrugsComponent],
@@ -20,6 +21,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     FormsModule,
     TableModule,
     ConfirmDialogModule,
+    ToastModule,
   ],
 })
 export class DoctorModule {}

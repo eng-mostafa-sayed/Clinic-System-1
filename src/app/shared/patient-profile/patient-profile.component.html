@@ -1,4 +1,6 @@
 <app-nav Header="Patient Data" [Back]="true" [Route]="'../../home'"></app-nav>
+<p-toast></p-toast>
+
 <div class="patient">
   <div class="patient__content">
     <h1 class="patient__title">Patient Data</h1>
@@ -55,6 +57,7 @@
           <div class="date">
             Date: {{ patientData.date | date: "d/M/yyyy" }}
           </div>
+          <div class="fileNo">File number: {{ patientData.fileNo }}</div>
           <label>IP.D: </label>
           <label for="far">Far</label>
           <input class="input" type="number" id="far" formControlName="far" />
@@ -252,13 +255,23 @@
         />
       </ng-container>
     </div>
-    <button class="btn-1" type="button" (click)="addNewDrug()">
+    <button
+      class="btn-1"
+      type="button"
+      (click)="addNewDrug()"
+      *ngIf="type == 'doctor'"
+    >
       <!-- <i class="fa-solid fa-kit-medical"></i> -->
       Add new
     </button>
     <div class="notes" [ngClass]="{ hide: isSight }">
       <span>Notes:</span>
-      <textarea class="input" rows="4" [(ngModel)]="checkNote"></textarea>
+      <textarea
+        class="input"
+        rows="4"
+        [(ngModel)]="checkNote"
+        [disabled]="type === 'nurse'"
+      ></textarea>
     </div>
     <div class="patient__form__action">
       <button
@@ -277,7 +290,6 @@
       >
         Appointment
       </button>
-
       <button type="button" class="btn-2" (click)="printMeds()">
         <span></span>Print
       </button>

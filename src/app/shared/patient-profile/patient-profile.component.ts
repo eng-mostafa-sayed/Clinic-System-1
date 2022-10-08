@@ -7,6 +7,7 @@ import { Patient } from 'src/app/models/patient.model';
 import { DrugsService } from 'src/app/services/drugs.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { PatientsService } from 'src/app/services/patients.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-patient-profile',
@@ -31,7 +32,8 @@ export class PatientProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private loadingService: LoadingService,
-    private drugsService: DrugsService
+    private drugsService: DrugsService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -94,9 +96,27 @@ export class PatientProfileComponent implements OnInit {
     console.log(this.items);
   }
   addSight() {
+    this.loadingService.isLoading.next(true);
     this.patientsService
       .addVisualAcuity(this.patientData._id, this.sightForm.value)
-      .subscribe((res) => {});
+      .subscribe({
+        next: (res) => {
+          this.loadingService.isLoading.next(false);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Saved Successfully',
+            detail: 'Visual Acuity has been updated',
+          });
+        },
+        error: (err) => {
+          this.loadingService.isLoading.next(false);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Faild to save',
+            detail: 'Check your internet and try again',
+          });
+        },
+      });
   }
   addCheck() {
     const check = new Check();
@@ -109,9 +129,25 @@ export class PatientProfileComponent implements OnInit {
       });
     });
     check.note = this.checkNote;
-    this.patientsService
-      .addCheck(this.patientData._id, { check })
-      .subscribe((res) => {});
+    this.patientsService.addCheck(this.patientData._id, { check }).subscribe({
+      next: (res) => {
+        this.loadingService.isLoading.next(false);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Saved Successfully',
+          detail: 'Visual Acuity has been updated',
+        });
+      },
+      error: (err) => {
+        this.loadingService.isLoading.next(false);
+        console.log(err);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Faild to save',
+          detail: 'Check your internet and try again',
+        });
+      },
+    });
   }
   printSight() {
     this.isSight = true;
