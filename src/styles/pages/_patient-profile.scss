@@ -283,3 +283,18 @@ body {
     }
   }
 }
+.mark-treated {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  background-color: #0055aa;
+  transition: all 0.5s;
+  color: #fff;
+  cursor: pointer;
+  z-index: 9;
+  padding: 10px;
+  border-radius: 5px;
+  &:hover {
+    background-color: #00172e;
+  }
+}

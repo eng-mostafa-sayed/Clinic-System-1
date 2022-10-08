@@ -333,3 +333,11 @@
     </div>
   </div>
 </div>
+<div
+  class="mark-treated hide"
+  *ngIf="type == 'doctor'"
+  (click)="removeFromWaiting()"
+>
+  Mark as Treated
+  <i class="fa-solid fa-check"></i>
+</div>

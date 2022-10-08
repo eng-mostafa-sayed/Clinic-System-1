@@ -235,5 +235,27 @@ export class PatientProfileComponent implements OnInit {
       note: '',
     });
   }
-  addNote(items: any) {}
+  removeFromWaiting() {
+    this.loadingService.isLoading.next(true);
+    this.patientsService.removeFromWaitingList(this.patientData._id).subscribe({
+      next: (res) => {
+        this.loadingService.isLoading.next(false);
+        this.router.navigateByUrl('/doctor/home');
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Patient Marked Successfully',
+          detail: 'The patient got added to the treated patients',
+        });
+      },
+      error: (err) => {
+        this.loadingService.isLoading.next(false);
+        console.log(err);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Faild to mark',
+          detail: 'Check your internet and try again',
+        });
+      },
+    });
+  }
 }
