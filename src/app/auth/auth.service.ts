@@ -59,13 +59,15 @@ export class AuthService {
     this.isAuthenticated = true;
     this.authStatusListener$.next(true);
   }
-  logout() {
+  logout(type: string) {
     this.http.post<any>(`${this.rootURL}/doctor/login}`, {}).subscribe({
       next: () => {
         this.removeAuthData();
+        this.router.navigate(['/signin']);
       },
       error: (err) => {
         this.removeAuthData();
+        this.router.navigate(['/signin']);
       },
     });
   }
@@ -74,6 +76,6 @@ export class AuthService {
     this.token = '';
     this.isAuthenticated = false;
     this.authStatusListener$.next(false);
-    this.router.navigate(['/doctor/signin']);
+    this.router.navigate(['/signin']);
   }
 }

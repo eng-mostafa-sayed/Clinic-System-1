@@ -31,8 +31,10 @@ export class PatientsService {
       `${this.rootURL}/allpatients/waiting`
     );
   }
-  addToWaitingList(id: string) {
-    return this.http.post(`${this.rootURL}/allpatients/waiting/${id}`, {});
+  addToWaitingList(id: string, type: string) {
+    return this.http.post(`${this.rootURL}/allpatients/waiting/${id}`, {
+      appointmentType: type,
+    });
   }
   addVisualAcuity(id: string, patientData: Sight) {
     return this.http.put(`${this.rootURL}/allpatients/v/${id}`, patientData);

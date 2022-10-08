@@ -3,6 +3,8 @@ export class Check {
     treatment: string;
     noOfTakes: string;
     period: string;
+    note: string;
+    type: string;
   }[];
   'note': string;
 }

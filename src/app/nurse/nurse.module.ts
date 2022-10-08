@@ -8,6 +8,7 @@ import { NurseHomeComponent } from './nurse-home/nurse-home.component';
 import { SharedModule } from '../shared/shared.module';
 import { PatientComponent } from './patient/patient.component';
 import { FormsModule } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [AddPatientComponent, NurseHomeComponent, PatientComponent],
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     NurseRoutingModule,
     SharedModule,
     FormsModule,
+    ToastModule,
   ],
 })
 export class NurseModule {}

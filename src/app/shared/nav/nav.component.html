@@ -18,5 +18,14 @@
     >
       View All Patients
     </div>
+    <div
+      class="btn-3"
+      style="padding: 10px 5px"
+      *ngIf="Type === 'nurse' || Type === 'doctor'"
+      (click)="logout()"
+    >
+      Logout
+      <i class="fa-solid fa-right-from-bracket" style="margin-left: 5px"></i>
+    </div>
   </div>
 </div>

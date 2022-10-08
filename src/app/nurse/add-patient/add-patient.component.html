@@ -1,5 +1,7 @@
 <app-nav Header="Add New Patient" [Back]="true" [Route]="'/nurse/home'">
 </app-nav>
+<p-toast></p-toast>
+
 <div class="add-patient">
   <form
     class="add-patient__form"
@@ -17,12 +19,12 @@
 
     <label for="gender">Gender</label>
     <select formControlName="gender" id="gender" class="input">
-      <option value="male" [ngValue]="newPatientForm.value.gender">Male</option>
+      <option value="male">Male</option>
       <option value="female">Female</option>
     </select>
 
-    <div>
-      <span>Add to waiting room</span>
+    <div class="options">
+      <span style="margin-right: -8px">Add to Waiting Room</span>
       <input
         type="checkbox"
         [(ngModel)]="isWaiting"
@@ -32,6 +34,20 @@
       <label for="isWaiting" class="waiting">
         <i class="fa-solid fa-check"></i>
       </label>
+      <label for="appointment">As</label>
+      <!-- <label for="appoint">Appointment</label>
+      <input type="radio" id="appoint" />
+      <label for="consult">Consultant</label>
+      <input type="radio" id="consult" /> -->
+      <select
+        formControlName="appointmentType"
+        id="appointment"
+        class="input"
+        style="width: 54%"
+      >
+        <option value="appointment">Appointment</option>
+        <option value="consultant">Consultant</option>
+      </select>
     </div>
     <!-- <label for="doctorId">Doctor</label>
     <select formControlName="_id" id="doctorId" class="input">

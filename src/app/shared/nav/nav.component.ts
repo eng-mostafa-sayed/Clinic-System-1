@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +12,10 @@ export class NavComponent implements OnInit {
   @Input() Back = false;
   @Input() Route = '';
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
+  logout() {
+    this.authService.logout(this.Type);
+  }
 }

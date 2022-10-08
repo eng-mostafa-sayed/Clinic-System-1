@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
     this.patientsService.getWaitingList().subscribe((res) => {
       this.inqueuePatients = res.data;
       if (res.data.length > 0) {
-        this.nextPatient = this.inqueuePatients.pop()!;
+        this.nextPatient = this.inqueuePatients.shift()!;
       }
       this.inqueuelength = res.data.length;
       this.loadingService.isLoading.next(false);

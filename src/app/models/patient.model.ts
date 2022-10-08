@@ -10,6 +10,7 @@ export class Patient {
   'gender': string;
   'date': Date;
   'fileNo': string;
+  'appointmentType': string;
   'status': boolean;
   'allChecks': { check: Check; note: string }[];
   'visualAcuity': Sight;

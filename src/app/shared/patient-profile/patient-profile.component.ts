@@ -21,8 +21,14 @@ export class PatientProfileComponent implements OnInit {
   patientData = new Patient();
   selectedDrugType = 'drops';
   items = [
-    { id: 0, selectedType: 'drops', name: '', noOfTakes: '', period: '' },
-    { id: 1, selectedType: 'drops', name: '', noOfTakes: '', period: '' },
+    {
+      id: 0,
+      selectedType: 'drops',
+      name: '',
+      noOfTakes: '',
+      period: '',
+      note: '',
+    },
   ];
   drugs: Drug[] = [];
   drugTypes: any = [];
@@ -76,14 +82,18 @@ export class PatientProfileComponent implements OnInit {
           ].check.treatments.forEach((check) => {
             const item = {
               id: this.items.length,
-              selectedType: 'drops',
+              selectedType: check.type,
               name: check.treatment,
               noOfTakes: check.noOfTakes,
               period: check.period,
+              note: check.note,
             };
             this.items.push(item);
           });
+          this.checkNote =
+            res.data.allChecks[res.data.allChecks.length - 1].check.note;
           this.loadingService.isLoading.next(false);
+          console.log(this.items);
         },
         error: (error) => {
           console.log(error);
@@ -126,6 +136,8 @@ export class PatientProfileComponent implements OnInit {
         treatment: item.name,
         period: item.period,
         noOfTakes: item.noOfTakes,
+        note: item.note,
+        type: item.selectedType,
       });
     });
     check.note = this.checkNote;
@@ -164,10 +176,52 @@ export class PatientProfileComponent implements OnInit {
 
   MakeAppint() {
     this.patientsService
-      .addToWaitingList(this.patientData._id)
-      .subscribe((res) => {
-        console.log(res);
-        this.router.navigateByUrl('/nurse/home');
+      .addToWaitingList(this.patientData._id, 'appointment')
+      .subscribe({
+        next: (res) => {
+          this.router.navigateByUrl('/nurse/home');
+          this.loadingService.isLoading.next(false);
+          setTimeout(() => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Appointment Made Successfully',
+              detail: 'The patient got added to the waiting room',
+            });
+          }, 1000);
+        },
+        error: (err) => {
+          this.loadingService.isLoading.next(false);
+          console.log(err);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Faild to add',
+            detail: 'Check your internet and try again',
+          });
+        },
+      });
+  }
+  MakeConsultant() {
+    this.patientsService
+      .addToWaitingList(this.patientData._id, 'consultant')
+      .subscribe({
+        next: (res) => {
+          this.loadingService.isLoading.next(false);
+          this.router.navigateByUrl('/nurse/home');
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Consultant Made Successfully',
+            detail: 'The patient got added to the waiting room',
+          });
+        },
+        error: (err) => {
+          this.loadingService.isLoading.next(false);
+          console.log(err);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Faild to add',
+            detail: 'Check your internet and try again',
+          });
+        },
       });
   }
   addNewDrug() {
@@ -177,6 +231,8 @@ export class PatientProfileComponent implements OnInit {
       name: '',
       noOfTakes: '',
       period: '',
+      note: '',
     });
   }
+  addNote(items: any) {}
 }

@@ -1,6 +1,5 @@
 <app-nav Header="Patient Data" [Back]="true" [Route]="'../../home'"></app-nav>
 <p-toast></p-toast>
-
 <div class="patient">
   <div class="patient__content">
     <h1 class="patient__title">Patient Data</h1>
@@ -44,6 +43,7 @@
       <div class="patient__gender">Gender: {{ patientData.gender }}</div>
       <div class="patient__fileNo">File number: {{ patientData.fileNo }}</div>
       <div class="patient__id">ID: {{ patientData._id }}</div>
+      <div class="patient__id">Type: {{ patientData.appointmentType }}</div>
     </div>
     <form
       class="patient__form"
@@ -213,6 +213,7 @@
       <h3>Type</h3>
       <h3>No.Takes</h3>
       <h3>Period</h3>
+      <span class="action"></span>
       <ng-container *ngFor="let item of items">
         <span class="R">R/</span>
         <select
@@ -253,6 +254,22 @@
           class="input"
           [(ngModel)]="item.period"
         />
+        <span class="action" (click)="item.note = ' '" *ngIf="type === 'doctor'"
+          ><i class="fa-regular fa-note-sticky"></i
+        ></span>
+
+        <div class="drug-note" *ngIf="item.note !== ''">
+          <label for="medNote">Note: </label>
+          <input
+            [disabled]="type == 'nurse'"
+            class="input"
+            [(ngModel)]="item.note"
+            id="medNote"
+          />
+          <span class="remove-note" (click)="item.note = ''"
+            ><i class="fa-solid fa-x"></i
+          ></span>
+        </div>
       </ng-container>
     </div>
     <button
@@ -282,14 +299,17 @@
       >
         Save
       </button>
-      <button
-        class="btn-1"
+      <div
+        style="margin-right: auto; margin-left: 10px; display: flex"
         *ngIf="type == 'nurse'"
-        (click)="MakeAppint()"
-        type="button"
       >
-        Appointment
-      </button>
+        <button class="btn-1" (click)="MakeAppint()" type="button">
+          Appointment
+        </button>
+        <button class="btn-1" (click)="MakeConsultant()" type="button">
+          Consultant
+        </button>
+      </div>
       <button type="button" class="btn-2" (click)="printMeds()">
         <span></span>Print
       </button>
