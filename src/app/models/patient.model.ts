@@ -1,3 +1,6 @@
+import { Check } from './check.model';
+import { Sight } from './sight.model';
+
 export class Patient {
   '_id': string;
   'name': string;
@@ -8,4 +11,6 @@ export class Patient {
   'date': Date;
   'fileNo': string;
   'status': boolean;
+  'allChecks': { check: Check; note: string }[];
+  'visualAcuity': Sight;
 }

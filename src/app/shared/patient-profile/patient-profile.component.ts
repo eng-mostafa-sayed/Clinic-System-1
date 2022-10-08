@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Check } from 'src/app/models/check.model';
 import { Drug } from 'src/app/models/drug.model';
 import { Patient } from 'src/app/models/patient.model';
 import { DrugsService } from 'src/app/services/drugs.service';
@@ -14,12 +15,13 @@ import { PatientsService } from 'src/app/services/patients.service';
 })
 export class PatientProfileComponent implements OnInit {
   @Input() type = '';
-  patientForm!: FormGroup;
+  sightForm!: FormGroup;
+  checkNote!: string;
   patientData = new Patient();
   selectedDrugType = 'drops';
-  items: { id: number; selectedType: string; name: string }[] = [
-    { id: 0, selectedType: 'drops', name: '' },
-    { id: 1, selectedType: 'drops', name: '' },
+  items = [
+    { id: 0, selectedType: 'drops', name: '', noOfTakes: '', period: '' },
+    { id: 1, selectedType: 'drops', name: '', noOfTakes: '', period: '' },
   ];
   drugs: Drug[] = [];
   drugTypes: any = [];
@@ -33,24 +35,24 @@ export class PatientProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.patientForm = new FormGroup({
+    this.sightForm = new FormGroup({
       near: new FormControl({ value: null, disabled: this.type == 'nurse' }),
       far: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      lt: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      rt: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      RDsph: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      LDsph: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      RDcyl: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      LDcyl: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      RDaxis: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      LDaxis: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      RRsph: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      LRsph: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      RRcyl: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      LRcyl: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      RRaxis: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      LRaxis: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      notes: new FormControl({ value: null, disabled: this.type == 'nurse' }),
+      lbcva: new FormControl({ value: null, disabled: this.type == 'nurse' }),
+      rbcva: new FormControl({ value: null, disabled: this.type == 'nurse' }),
+      rdsph: new FormControl({ value: null, disabled: this.type == 'nurse' }),
+      ldsph: new FormControl({ value: null, disabled: this.type == 'nurse' }),
+      rdcyl: new FormControl({ value: null, disabled: this.type == 'nurse' }),
+      ldcyl: new FormControl({ value: null, disabled: this.type == 'nurse' }),
+      rdaxis: new FormControl({ value: null, disabled: this.type == 'nurse' }),
+      ldaxis: new FormControl({ value: null, disabled: this.type == 'nurse' }),
+      rrsph: new FormControl({ value: null, disabled: this.type == 'nurse' }),
+      lrsph: new FormControl({ value: null, disabled: this.type == 'nurse' }),
+      rrcyl: new FormControl({ value: null, disabled: this.type == 'nurse' }),
+      lrcyl: new FormControl({ value: null, disabled: this.type == 'nurse' }),
+      rraxis: new FormControl({ value: null, disabled: this.type == 'nurse' }),
+      lraxis: new FormControl({ value: null, disabled: this.type == 'nurse' }),
+      note: new FormControl({ value: null, disabled: this.type == 'nurse' }),
     });
 
     this.loadingService.isLoading.next(true);
@@ -65,6 +67,20 @@ export class PatientProfileComponent implements OnInit {
         next: (res) => {
           console.log(res);
           this.patientData = res.data;
+          this.sightForm.setValue(res.data.visualAcuity);
+          this.items = [];
+          res.data.allChecks[
+            res.data.allChecks.length - 1
+          ].check.treatments.forEach((check) => {
+            const item = {
+              id: this.items.length,
+              selectedType: 'drops',
+              name: check.treatment,
+              noOfTakes: check.noOfTakes,
+              period: check.period,
+            };
+            this.items.push(item);
+          });
           this.loadingService.isLoading.next(false);
         },
         error: (error) => {
@@ -75,10 +91,29 @@ export class PatientProfileComponent implements OnInit {
     });
   }
   submit() {
-    console.log(this.patientForm);
     console.log(this.items);
   }
-  printSigt() {
+  addSight() {
+    this.patientsService
+      .addVisualAcuity(this.patientData._id, this.sightForm.value)
+      .subscribe((res) => {});
+  }
+  addCheck() {
+    const check = new Check();
+    check.treatments = [];
+    this.items.forEach((item) => {
+      check.treatments.push({
+        treatment: item.name,
+        period: item.period,
+        noOfTakes: item.noOfTakes,
+      });
+    });
+    check.note = this.checkNote;
+    this.patientsService
+      .addCheck(this.patientData._id, { check })
+      .subscribe((res) => {});
+  }
+  printSight() {
     this.isSight = true;
     setTimeout(() => {
       window.print();
@@ -100,6 +135,12 @@ export class PatientProfileComponent implements OnInit {
       });
   }
   addNewDrug() {
-    this.items.push({ id: this.items.length, selectedType: 'drops', name: '' });
+    this.items.push({
+      id: this.items.length,
+      selectedType: 'drops',
+      name: '',
+      noOfTakes: '',
+      period: '',
+    });
   }
 }

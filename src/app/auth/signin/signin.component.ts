@@ -23,7 +23,6 @@ export class SigninComponent implements OnInit {
 
   ngOnInit(): void {}
   login() {
-    console.log(this.loginForm.value);
     this.loadingService.isLoading.next(true);
     this.authService.signin(
       this.loginForm.value.username,

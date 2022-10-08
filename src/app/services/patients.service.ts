@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
+import { Check } from '../models/check.model';
 import { Patient } from '../models/patient.model';
+import { Sight } from '../models/sight.model';
 
 @Injectable({
   providedIn: 'root',
@@ -32,8 +34,11 @@ export class PatientsService {
   addToWaitingList(id: string) {
     return this.http.post(`${this.rootURL}/allpatients/waiting/${id}`, {});
   }
-  upadtePatient(patient: Patient) {
-    return this.http.put(`${this.rootURL}/allpatients/v/${patient._id}`, {});
+  addVisualAcuity(id: string, patientData: Sight) {
+    return this.http.put(`${this.rootURL}/allpatients/v/${id}`, patientData);
+  }
+  addCheck(id: string, data: { check: Check }) {
+    return this.http.put(`${this.rootURL}/allpatients/${id}`, data);
   }
   addNewPatient(data: any) {
     console.log(data);
