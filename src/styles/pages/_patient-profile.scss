@@ -79,6 +79,8 @@ body {
   // }
   &__form {
     overflow: hidden;
+    border-bottom: 1px dotted #000;
+    margin-bottom: 10px;
     &__action {
       display: flex;
       justify-content: flex-end;
@@ -90,6 +92,7 @@ body {
       }
       @media print {
         display: none;
+        border: none;
       }
     }
   }
@@ -135,7 +138,7 @@ body {
   }
   &__meds {
     display: grid;
-    grid-template-columns: 1fr 120px 70px 70px 30px;
+    grid-template-columns: 1fr 120px 80px 80px 30px;
     column-gap: 1rem;
     row-gap: 2rem;
     padding: 2rem;
@@ -204,6 +207,12 @@ body {
       transition: none;
     }
   }
+  .diagnose {
+    padding: 2rem;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
   .btn-1 {
     @media print {
       display: none;
@@ -216,6 +225,7 @@ body {
       outline: none;
       appearance: none;
       padding: 0;
+      resize: none;
     }
   }
   .hide {
@@ -244,6 +254,13 @@ body {
     }
     .ar-data {
       font-family: Cairo;
+    }
+  }
+  .body {
+    display: none !important;
+    justify-content: space-between;
+    div div {
+      margin: 10px 0px;
     }
   }
   .footer {

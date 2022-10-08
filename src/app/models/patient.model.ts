@@ -12,6 +12,7 @@ export class Patient {
   'fileNo': string;
   'appointmentType': string;
   'status': boolean;
+  'diagnoses': string;
   'allChecks': { check: Check; note: string }[];
   'visualAcuity': Sight;
 }

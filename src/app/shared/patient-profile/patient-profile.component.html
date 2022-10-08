@@ -20,6 +20,19 @@
         <span>أخصائي العلاج بالليزر</span>
       </div>
     </div>
+    <div class="body" [ngClass]="{ printable: !isSight }">
+      <div>
+        <div class="">Name: {{ patientData.name }}</div>
+        <div class="">Date: {{ patientData.date | date: "dd/M/yyyy" }}</div>
+      </div>
+      <div>
+        <div class="">Diagnose: {{ patientData.diagnoses }}</div>
+        <div class="">
+          BCVA: RT: {{ patientData.visualAcuity.rbcva }} / LT:
+          {{ patientData.visualAcuity.lbcva }}
+        </div>
+      </div>
+    </div>
     <div class="footer" [ngClass]="{ printable: !isSight }">
       <div class="address">
         <span> الإسماعلية-الشيخ زايد-برج الطلائع رقم</span>
@@ -209,10 +222,10 @@
     <!-- Check -->
     <div class="patient__meds" [ngClass]="{ hide: isSight }">
       <span class="R"></span>
-      <h3>Medications</h3>
-      <h3>Type</h3>
-      <h3>No.Takes</h3>
-      <h3>Period</h3>
+      <h4>Medications</h4>
+      <h4>Type</h4>
+      <h4>No.Takes</h4>
+      <h4>Period</h4>
       <span class="action"></span>
       <ng-container *ngFor="let item of items">
         <span class="R">R/</span>
@@ -281,6 +294,10 @@
       <!-- <i class="fa-solid fa-kit-medical"></i> -->
       Add new
     </button>
+    <div class="hide diagnose">
+      <span>Diagnose:</span>
+      <input type="text" [(ngModel)]="diagnose" class="input" />
+    </div>
     <div class="notes" [ngClass]="{ hide: isSight }">
       <span>Notes:</span>
       <textarea

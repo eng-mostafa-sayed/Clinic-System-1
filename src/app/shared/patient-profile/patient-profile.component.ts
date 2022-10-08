@@ -18,6 +18,7 @@ export class PatientProfileComponent implements OnInit {
   @Input() type = '';
   sightForm!: FormGroup;
   checkNote!: string;
+  diagnose!: string;
   patientData = new Patient();
   selectedDrugType = 'drops';
   items = [
