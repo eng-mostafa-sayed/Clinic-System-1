@@ -41,7 +41,7 @@
         <span><i class="fa-solid fa-location-dot"></i></span>
       </div>
       <div class="phone">
-        ت العيادة: ۰٦٤/۳۱۱۳۳۹٥ - ۰۱۰۲۰۸۸۰۸٦۰
+        ت العيادة : ۰٦٤/۳۱۱۳۳۹٥ - ۰۱۰۲۰۸۸۰۸٦۰
         <i class="fa-solid fa-square-phone"></i>
       </div>
       <div style="text-align: center">
@@ -54,10 +54,10 @@
       [formGroup]="paitentDataForm"
     >
       <div class="patient__name" *ngIf="!editMode">
-        <span class="title">Name: </span> {{ patientData.name }}
+        <span class="title">Name : </span> {{ patientData.name }}
       </div>
       <div class="patient__name" *ngIf="editMode">
-        <span class="title">Name: </span>
+        <span class="title">Name : </span>
         <input
           class="input"
           [value]="patientData.name"
@@ -66,13 +66,13 @@
         />
       </div>
       <div class="patient__date">
-        <span class="title">Date: </span>{{ patientData.date }}
+        <span class="title">Date : </span>{{ patientData.date }}
       </div>
       <div class="patient__age" *ngIf="!editMode">
-        <span class="title">Age: </span> {{ patientData.age }}
+        <span class="title">Age : </span> {{ patientData.age }}
       </div>
       <div class="patient__age" *ngIf="editMode">
-        <span class="title">Age: </span>
+        <span class="title">Age : </span>
         <input
           class="input"
           [value]="patientData.age"
@@ -81,10 +81,10 @@
         />
       </div>
       <div class="patient__phone" *ngIf="!editMode">
-        <span class="title">Phone: </span> {{ patientData.phoneNumber }}
+        <span class="title">Phone : </span> {{ patientData.phoneNumber }}
       </div>
       <div class="patient__phone" *ngIf="editMode">
-        <span class="title">Phone: </span>
+        <span class="title">Phone : </span>
         <input
           class="input"
           [value]="patientData.phoneNumber"
@@ -93,26 +93,26 @@
         />
       </div>
       <div class="patient__gender" *ngIf="!editMode">
-        <span class="title">Gender: </span> {{ patientData.gender }}
+        <span class="title">Gender : </span> {{ patientData.gender }}
       </div>
       <div class="patient__gender" *ngIf="editMode">
-        <label class="title">Gender: </label>
+        <label class="title">Gender : </label>
         <select formControlName="gender" id="gender" class="input">
           <option value="male">Male</option>
           <option value="female">Female</option>
         </select>
       </div>
       <div class="patient__fileNo">
-        <span class="title">File number: </span>{{ patientData.fileNo }}
+        <span class="title">File number : </span>{{ patientData.fileNo }}
       </div>
       <div class="patient__id">
-        <span class="title">ID: </span>{{ patientData._id }}
+        <span class="title">ID : </span>{{ patientData._id }}
       </div>
       <div class="patient__type" *ngIf="!editMode">
-        <span class="title">Type: </span> {{ patientData.appointmentType }}
+        <span class="title">Type : </span> {{ patientData.appointmentType }}
       </div>
       <div class="patient__type" *ngIf="editMode">
-        <label class="title">Type: </label>
+        <label class="title">Type : </label>
         <select
           formControlName="appointmentType"
           id="appointment"
@@ -143,23 +143,23 @@
     >
       <div class="patient__sight" [ngClass]="{ hide: !isSight }">
         <div class="patient__sight-1">
-          <div class="name">Name: {{ patientData.name }}</div>
+          <div class="name">Name : {{ patientData.name }}</div>
           <div class="date">
             Date: {{ patientData.date | date: "d/M/yyyy" }}
           </div>
-          <div class="fileNo">File number: {{ patientData.fileNo }}</div>
+          <div class="fileNo">File number : {{ patientData.fileNo }}</div>
           <label>I.P.D: </label>
           <label for="far">Far</label>
           <input class="input" type="number" id="far" formControlName="far" />
           <label for="far">Near </label>
           <input class="input" type="number" id="near" formControlName="near" />
-          <label for="RT">BCVA: </label>
+          <label for="RT">BCVA : </label>
           <label for="RT">Rt </label>
           <input class="input" type="number" id="RT" formControlName="rbcva" />
           <label for="LT">Lt</label>
           <input class="input" type="number" id="LT" formControlName="lbcva" />
           <div>
-            <label for="note">Notes:</label>
+            <label for="note">Notes :</label>
             <input class="input" formControlName="note" id="note" />
           </div>
         </div>
@@ -355,7 +355,7 @@
           ><i class="fa-solid fa-x"></i
         ></span>
         <div class="drug-note" *ngIf="item.note !== ''">
-          <label for="medNote">Note: </label>
+          <label for="medNote">Note : </label>
           <input
             [disabled]="type == 'nurse'"
             class="input"
@@ -390,7 +390,7 @@
       />
     </div>
     <div class="notes" [ngClass]="{ hide: isSight }">
-      <span>Notes:</span>
+      <span>Notes :</span>
       <textarea
         class="input"
         rows="4"
