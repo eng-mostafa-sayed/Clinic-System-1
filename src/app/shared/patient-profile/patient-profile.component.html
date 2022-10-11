@@ -15,20 +15,20 @@
       <div class="ar-data">
         <span>دكتور</span>
         <strong>عصام خضر</strong>
-        <span>إستشارى وجراح العيون</span>
-        <span>عضو الجمعية المصرية للمياة البيضاء والانكسار</span>
+        <span>إستشاري وجراح العيون</span>
+        <span>عضو الجمعية المصرية للمياة البيضاء والإنكسار</span>
         <span>أخصائي العلاج بالليزر</span>
       </div>
     </div>
     <div class="body" [ngClass]="{ printable: !isSight }">
-      <div>
+      <div style="width: 45%">
         <div class="">Name: {{ patientData.name }}</div>
         <div class="">Date: {{ patientData.date | date: "dd/M/yyyy" }}</div>
       </div>
-      <div>
-        <div class="">Diagnose: {{ patientData.diagnoses }}</div>
+      <div style="width: 55%">
+        <div class="">Diagnose: {{ diagnose }}</div>
         <div class="">
-          BCVA: RT: {{ patientData.visualAcuity.rbcva }} / LT:
+          BCVA: Rt: {{ patientData.visualAcuity.rbcva }} / Lt:
           {{ patientData.visualAcuity.lbcva }}
         </div>
       </div>
@@ -37,7 +37,7 @@
       <div class="address">
         <span> الإسماعلية-الشيخ زايد-برج الطلائع رقم</span>
         <span>(٢١)</span>
-        <span> اول الشارع التجاري بجوار مسجد ابو المجد </span>
+        <span> أول الشارع التجاري بجوار مسجد أبو المجد </span>
         <span><i class="fa-solid fa-location-dot"></i></span>
       </div>
       <div class="phone">
@@ -48,16 +48,93 @@
         ( الاستشارة خلال اسبوع من تاريخ الكشف )
       </div>
     </div>
-    <div class="patient__data hide">
-      <div class="patient__name">Name: {{ patientData.name }}</div>
-      <div class="patient__date">Date: {{ patientData.date }}</div>
-      <div class="patient__age">Age: {{ patientData.age }}</div>
-      <div class="patient__phone">Phone: {{ patientData.phoneNumber }}</div>
-      <div class="patient__gender">Gender: {{ patientData.gender }}</div>
-      <div class="patient__fileNo">File number: {{ patientData.fileNo }}</div>
-      <div class="patient__id">ID: {{ patientData._id }}</div>
-      <div class="patient__id">Type: {{ patientData.appointmentType }}</div>
-    </div>
+    <form
+      class="patient__data hide"
+      (ngSubmit)="saveData()"
+      [formGroup]="paitentDataForm"
+    >
+      <div class="patient__name" *ngIf="!editMode">
+        <span class="title">Name: </span> {{ patientData.name }}
+      </div>
+      <div class="patient__name" *ngIf="editMode">
+        <span class="title">Name: </span>
+        <input
+          class="input"
+          [value]="patientData.name"
+          type="text"
+          formControlName="name"
+        />
+      </div>
+      <div class="patient__date">
+        <span class="title">Date: </span>{{ patientData.date }}
+      </div>
+      <div class="patient__age" *ngIf="!editMode">
+        <span class="title">Age: </span> {{ patientData.age }}
+      </div>
+      <div class="patient__age" *ngIf="editMode">
+        <span class="title">Age: </span>
+        <input
+          class="input"
+          [value]="patientData.age"
+          type="text"
+          formControlName="age"
+        />
+      </div>
+      <div class="patient__phone" *ngIf="!editMode">
+        <span class="title">Phone: </span> {{ patientData.phoneNumber }}
+      </div>
+      <div class="patient__phone" *ngIf="editMode">
+        <span class="title">Phone: </span>
+        <input
+          class="input"
+          [value]="patientData.phoneNumber"
+          type="text"
+          formControlName="phoneNumber"
+        />
+      </div>
+      <div class="patient__gender" *ngIf="!editMode">
+        <span class="title">Gender: </span> {{ patientData.gender }}
+      </div>
+      <div class="patient__gender" *ngIf="editMode">
+        <label class="title">Gender: </label>
+        <select formControlName="gender" id="gender" class="input">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <div class="patient__fileNo">
+        <span class="title">File number: </span>{{ patientData.fileNo }}
+      </div>
+      <div class="patient__id">
+        <span class="title">ID: </span>{{ patientData._id }}
+      </div>
+      <div class="patient__type" *ngIf="!editMode">
+        <span class="title">Type: </span> {{ patientData.appointmentType }}
+      </div>
+      <div class="patient__type" *ngIf="editMode">
+        <label class="title">Type: </label>
+        <select
+          formControlName="appointmentType"
+          id="appointment"
+          class="input"
+        >
+          <option value="appointment">Appointment</option>
+          <option value="consultant">Consultant</option>
+        </select>
+      </div>
+
+      <button
+        type="button"
+        class="btn-3"
+        *ngIf="type == 'nurse' && !editMode"
+        (click)="editMode = true"
+      >
+        <i class="fa-solid fa-pen-to-square"></i>
+      </button>
+      <button class="btn-3" *ngIf="type == 'nurse' && editMode" type="submit">
+        <i class="fa-solid fa-check"></i>
+      </button>
+    </form>
     <form
       class="patient__form"
       (ngSubmit)="addSight()"
@@ -71,15 +148,15 @@
             Date: {{ patientData.date | date: "d/M/yyyy" }}
           </div>
           <div class="fileNo">File number: {{ patientData.fileNo }}</div>
-          <label>IP.D: </label>
+          <label>I.P.D: </label>
           <label for="far">Far</label>
           <input class="input" type="number" id="far" formControlName="far" />
           <label for="far">Near </label>
           <input class="input" type="number" id="near" formControlName="near" />
           <label for="RT">BCVA: </label>
-          <label for="RT">RT </label>
+          <label for="RT">Rt </label>
           <input class="input" type="number" id="RT" formControlName="rbcva" />
-          <label for="LT">LT</label>
+          <label for="LT">Lt</label>
           <input class="input" type="number" id="LT" formControlName="lbcva" />
           <div>
             <label for="note">Notes:</label>
@@ -96,11 +173,11 @@
               </tr>
               <tr>
                 <td></td>
-                <td>Sph</td>
-                <td>Cyl</td>
+                <td>Sph.</td>
+                <td>Cyl.</td>
                 <td>Axis</td>
-                <td>Sph</td>
-                <td>Cyl</td>
+                <td>Sph.</td>
+                <td>Cyl.</td>
                 <td>Axis</td>
               </tr>
             </thead>
@@ -110,7 +187,7 @@
                 <td>
                   <input
                     type="number"
-                    step="0.5"
+                    step="0.25"
                     class="input"
                     formControlName="rdsph"
                   />
@@ -118,7 +195,7 @@
                 <td>
                   <input
                     type="number"
-                    step="0.5"
+                    step="0.25"
                     class="input"
                     formControlName="rdcyl"
                   />
@@ -126,7 +203,7 @@
                 <td>
                   <input
                     type="number"
-                    step="0.5"
+                    step="0.25"
                     class="input"
                     formControlName="rdaxis"
                   />
@@ -134,7 +211,7 @@
                 <td>
                   <input
                     type="number"
-                    step="0.5"
+                    step="0.25"
                     class="input"
                     formControlName="ldsph"
                   />
@@ -142,7 +219,7 @@
                 <td>
                   <input
                     type="number"
-                    step="0.5"
+                    step="0.25"
                     class="input"
                     formControlName="ldcyl"
                   />
@@ -150,7 +227,7 @@
                 <td>
                   <input
                     type="number"
-                    step="0.5"
+                    step="0.25"
                     class="input"
                     formControlName="ldaxis"
                   />
@@ -161,7 +238,7 @@
                 <td>
                   <input
                     type="number"
-                    step="0.5"
+                    step="0.25"
                     class="input"
                     formControlName="rrsph"
                   />
@@ -169,7 +246,7 @@
                 <td>
                   <input
                     type="number"
-                    step="0.5"
+                    step="0.25"
                     class="input"
                     formControlName="rrcyl"
                   />
@@ -177,7 +254,7 @@
                 <td>
                   <input
                     type="number"
-                    step="0.5"
+                    step="0.25"
                     class="input"
                     formControlName="rraxis"
                   />
@@ -185,7 +262,7 @@
                 <td>
                   <input
                     type="number"
-                    step="0.5"
+                    step="0.25"
                     class="input"
                     formControlName="lrsph"
                   />
@@ -193,7 +270,7 @@
                 <td>
                   <input
                     type="number"
-                    step="0.5"
+                    step="0.25"
                     class="input"
                     formControlName="lrcyl"
                   />
@@ -201,7 +278,7 @@
                 <td>
                   <input
                     type="number"
-                    step="0.5"
+                    step="0.25"
                     class="input"
                     formControlName="lraxis"
                   />
@@ -224,8 +301,9 @@
       <span class="R"></span>
       <h4>Medications</h4>
       <h4>Type</h4>
-      <h4>No.Takes</h4>
+      <h4>No.takes</h4>
       <h4>Period</h4>
+      <span class="action"></span>
       <span class="action"></span>
       <ng-container *ngFor="let item of items">
         <span class="R">R/</span>
@@ -270,7 +348,12 @@
         <span class="action" (click)="item.note = ' '" *ngIf="type === 'doctor'"
           ><i class="fa-regular fa-note-sticky"></i
         ></span>
-
+        <span
+          class="action"
+          (click)="removeDrug(item)"
+          *ngIf="type === 'doctor'"
+          ><i class="fa-solid fa-x"></i
+        ></span>
         <div class="drug-note" *ngIf="item.note !== ''">
           <label for="medNote">Note: </label>
           <input
@@ -278,6 +361,7 @@
             class="input"
             [(ngModel)]="item.note"
             id="medNote"
+            (keyup)="changeDir($event)"
           />
           <span class="remove-note" (click)="item.note = ''"
             ><i class="fa-solid fa-x"></i
@@ -295,8 +379,15 @@
       Add new
     </button>
     <div class="hide diagnose">
-      <span>Diagnose:</span>
-      <input type="text" [(ngModel)]="diagnose" class="input" />
+      <label for="diagnose">Diagnosis</label>
+      <input
+        id="diagnose"
+        type="text"
+        [(ngModel)]="diagnose"
+        class="input"
+        [disabled]="type === 'nurse'"
+        (keyup)="changeDir($event)"
+      />
     </div>
     <div class="notes" [ngClass]="{ hide: isSight }">
       <span>Notes:</span>
@@ -305,6 +396,7 @@
         rows="4"
         [(ngModel)]="checkNote"
         [disabled]="type === 'nurse'"
+        (keyup)="changeDir($event)"
       ></textarea>
     </div>
     <div class="patient__form__action">

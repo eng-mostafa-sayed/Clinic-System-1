@@ -58,6 +58,9 @@ export class PatientsService {
   deletePatient(data: any) {
     return this.http.delete(`${this.rootURL}/allpatients`);
   }
+  updatePatientData(id: string, data: any) {
+    return this.http.post(`${this.rootURL}/allpatients/${id}`, data);
+  }
   forgetPassword(username: string, password: string) {
     return this.http.post<any>(`${this.rootURL}/doctor/forgetpassword`, {
       name: username,

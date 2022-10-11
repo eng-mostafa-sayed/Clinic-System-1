@@ -12,6 +12,7 @@ body {
   align-items: center;
   margin: 5rem auto;
   padding: 20px;
+
   @media print {
     margin: 0 auto;
     padding: 0px;
@@ -40,6 +41,7 @@ body {
   }
   &__title {
     display: block;
+    z-index: 9;
     @media print {
       display: none;
     }
@@ -54,13 +56,32 @@ body {
     background: linear-gradient(to bottom right, $color-secondary-1, #6997c5);
     color: #fff;
     padding: 2.2rem;
+    padding-right: 4rem;
     padding-top: 6.2rem;
     margin-top: -4rem;
     font-size: 1.5rem;
+
     display: grid;
     grid-template-columns: repeat(2, minmax(50%, 1fr));
     row-gap: 2rem;
     column-gap: 2rem;
+    position: relative;
+    & > div {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      grid-template-rows: 1fr;
+      column-gap: 10px;
+      align-items: center;
+      .title {
+        font-size: 16px;
+      }
+    }
+    button {
+      position: absolute;
+      top: 30px;
+      right: 12px;
+      z-index: 999;
+    }
   }
   &__age,
   &__gender,
@@ -138,7 +159,7 @@ body {
   }
   &__meds {
     display: grid;
-    grid-template-columns: 1fr 120px 80px 80px 30px;
+    grid-template-columns: 1fr 120px 80px 80px 15px 15px;
     column-gap: 1rem;
     row-gap: 2rem;
     padding: 2rem;
@@ -165,11 +186,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
+    font-size: 20px;
     cursor: pointer;
     transition: all 0.4s;
     &:hover {
       color: #0055aa;
+    }
+    &:last-child {
+      color: #960000;
     }
     @media print {
       display: none !important;
@@ -210,8 +234,13 @@ body {
   .diagnose {
     padding: 2rem;
     display: flex;
-    gap: 10px;
     align-items: center;
+    column-gap: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    input {
+      font-size: 18px;
+    }
   }
   .btn-1 {
     @media print {
@@ -228,11 +257,7 @@ body {
       resize: none;
     }
   }
-  .hide {
-    @media print {
-      display: none;
-    }
-  }
+
   .header {
     display: none !important;
     justify-content: space-between;
@@ -259,6 +284,7 @@ body {
   .body {
     display: none !important;
     justify-content: space-between;
+    font-size: 14px;
     div div {
       margin: 10px 0px;
     }
@@ -281,6 +307,11 @@ body {
     @media print {
       display: flex !important;
     }
+  }
+}
+.hide {
+  @media print {
+    display: none !important;
   }
 }
 .mark-treated {

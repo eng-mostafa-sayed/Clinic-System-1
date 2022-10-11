@@ -17,10 +17,12 @@ import { MessageService } from 'primeng/api';
 export class PatientProfileComponent implements OnInit {
   @Input() type = '';
   sightForm!: FormGroup;
+  paitentDataForm!: FormGroup;
   checkNote!: string;
   diagnose!: string;
   patientData = new Patient();
   selectedDrugType = 'drops';
+  editMode = false;
   items = [
     {
       id: 0,
@@ -63,6 +65,13 @@ export class PatientProfileComponent implements OnInit {
       lraxis: new FormControl({ value: null, disabled: this.type == 'nurse' }),
       note: new FormControl({ value: null, disabled: this.type == 'nurse' }),
     });
+    this.paitentDataForm = new FormGroup({
+      name: new FormControl(null),
+      phoneNumber: new FormControl(null),
+      age: new FormControl(null),
+      gender: new FormControl(null),
+      appointmentType: new FormControl(null),
+    });
 
     this.loadingService.isLoading.next(true);
     this.drugsService.getAllDrugs().subscribe((res) => {
@@ -77,6 +86,14 @@ export class PatientProfileComponent implements OnInit {
           console.log(res);
           this.patientData = res.data;
           this.sightForm.setValue(res.data.visualAcuity);
+          let { name, phoneNumber, age, gender, appointmentType } = res.data;
+          this.paitentDataForm.setValue({
+            name,
+            phoneNumber,
+            age,
+            gender,
+            appointmentType,
+          });
           this.items = [];
           res.data.allChecks[
             res.data.allChecks.length - 1
@@ -118,6 +135,8 @@ export class PatientProfileComponent implements OnInit {
             summary: 'Saved Successfully',
             detail: 'Visual Acuity has been updated',
           });
+          this.patientData.visualAcuity.lbcva = this.sightForm.value.lbcva;
+          this.patientData.visualAcuity.rbcva = this.sightForm.value.rbcva;
         },
         error: (err) => {
           this.loadingService.isLoading.next(false);
@@ -235,6 +254,12 @@ export class PatientProfileComponent implements OnInit {
       note: '',
     });
   }
+  removeDrug(drug: any) {
+    this.items = this.items.filter((item) => {
+      return item.id !== drug.id;
+    });
+    console.log(this.items);
+  }
   removeFromWaiting() {
     this.loadingService.isLoading.next(true);
     this.patientsService.removeFromWaitingList(this.patientData._id).subscribe({
@@ -257,5 +282,45 @@ export class PatientProfileComponent implements OnInit {
         });
       },
     });
+  }
+  saveData() {
+    this.editMode = false;
+    this.loadingService.isLoading.next(true);
+    this.patientsService
+      .updatePatientData(this.patientData._id, this.paitentDataForm.value)
+      .subscribe({
+        next: (res) => {
+          this.loadingService.isLoading.next(false);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Patient Updated Successfully',
+            detail: 'The patient data got updated',
+          });
+          this.patientData.name = this.paitentDataForm.value.name;
+          this.patientData.age = this.paitentDataForm.value.age;
+          this.patientData.phoneNumber = this.paitentDataForm.value.phoneNumber;
+          this.patientData.gender = this.paitentDataForm.value.gender;
+          this.patientData.appointmentType =
+            this.paitentDataForm.value.appointmentType;
+        },
+        error: (err) => {
+          this.loadingService.isLoading.next(false);
+          console.log(err);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Faild to update',
+            detail: 'Check your internet and try again',
+          });
+        },
+      });
+  }
+  changeDir(e: any) {
+    console.log(e.target);
+    const pattern = /[\u0600-\u06FF]/;
+    if (pattern.test(e.target.value)) {
+      e.target.setAttribute('dir', 'rtl');
+    } else {
+      e.target.setAttribute('dir', 'ltr');
+    }
   }
 }
