@@ -1,5 +1,8 @@
 <div class="queue">
-  <div class="container">
+  <div
+    class="container"
+    [ngClass]="nextPatient.gender == 'male' ? 'male' : 'female'"
+  >
     <h2 class="queue__header">
       <span> Next patient</span>
       <span
@@ -12,7 +15,15 @@
     </h2>
     <div><span class="sub">Name:</span>{{ nextPatient.name }}</div>
     <div><span class="sub">Age:</span>{{ nextPatient.age }}</div>
-    <div><span class="sub">Gender:</span>{{ nextPatient.gender }}</div>
+    <div>
+      <span class="sub">Gender:</span>
+      <span *ngIf="nextPatient.gender == 'male'" style="color: #51bfe0"
+        >Male<i class="fa-solid fa-mars"></i>
+      </span>
+      <span *ngIf="nextPatient.gender == 'female'" style="color: #e64893">
+        Female <i class="fa-solid fa-venus"></i
+      ></span>
+    </div>
     <div><span class="sub">Phone:</span>{{ nextPatient.phoneNumber }}</div>
     <div>
       <span class="sub">Date:</span>{{ nextPatient.date | date: "medium" }}
@@ -34,7 +45,15 @@
     <ng-container *ngFor="let patient of inqueuePatients">
       <div><span class="sub">Name:</span>{{ patient.name }}</div>
       <div><span class="sub">Age:</span>{{ patient.age }}</div>
-      <div><span class="sub">Gender:</span>{{ patient.gender }}</div>
+      <div>
+        <span class="sub">Gender:</span>
+        <span *ngIf="patient.gender == 'male'" style="color: #51bfe0"
+          ><i class="fa-solid fa-mars"></i> Male</span
+        >
+        <span *ngIf="patient.gender == 'female'" style="color: #e64893">
+          <i class="fa-solid fa-venus"></i>Female</span
+        >
+      </div>
       <div><span class="sub">Phone:</span>{{ patient.phoneNumber }}</div>
       <div>
         <span class="sub">Date:</span>{{ patient.date | date: "medium" }}
