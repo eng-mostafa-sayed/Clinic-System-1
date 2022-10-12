@@ -9,7 +9,13 @@
     [formGroup]="newPatientForm"
   >
     <label for="name">Name</label>
-    <input formControlName="name" type="text" class="input" id="name" />
+    <input
+      formControlName="name"
+      type="text"
+      (keyup)="changeDir($event)"
+      class="input"
+      id="name"
+    />
 
     <label for="phone"> Phone </label>
     <input formControlName="phoneNumber" type="text" class="input" id="phone" />
@@ -45,8 +51,8 @@
         class="input"
         style="width: 54%"
       >
-        <option value="appointment">كشف</option>
-        <option value="consultant">أستشارة</option>
+        <option value="check up">كشف</option>
+        <option value="consultation">أستشارة</option>
       </select>
     </div>
     <!-- <label for="doctorId">Doctor</label>

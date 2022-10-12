@@ -17,7 +17,13 @@
     <div>
       <span class="sub">Date:</span>{{ nextPatient.date | date: "medium" }}
     </div>
-    <div><span class="sub">Type:</span>{{ nextPatient.appointmentType }}</div>
+    <div>
+      <span class="sub">Type:</span>
+      <span *ngIf="nextPatient.appointmentType == 'check up'"> كشف </span>
+      <span *ngIf="nextPatient.appointmentType == 'consultation'">
+        استشارة
+      </span>
+    </div>
   </div>
 </div>
 <div class="queue">
@@ -33,8 +39,13 @@
       <div>
         <span class="sub">Date:</span>{{ patient.date | date: "medium" }}
       </div>
-      <div><span class="sub">Type:</span>{{ nextPatient.appointmentType }}</div>
-
+      <div>
+        <span class="sub">Type:</span>
+        <span *ngIf="patient.appointmentType === 'check up'"> كشف </span>
+        <span *ngIf="patient.appointmentType === 'consultation'">
+          استشارة
+        </span>
+      </div>
       <div class="queue__divider"></div>
     </ng-container>
   </div>

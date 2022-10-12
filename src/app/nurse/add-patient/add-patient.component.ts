@@ -98,4 +98,12 @@ export class AddPatientComponent implements OnInit {
       });
     }
   }
+  changeDir(e: any) {
+    const pattern = /[\u0600-\u06FF]/;
+    if (pattern.test(e.target.value)) {
+      e.target.setAttribute('dir', 'rtl');
+    } else {
+      e.target.setAttribute('dir', 'ltr');
+    }
+  }
 }

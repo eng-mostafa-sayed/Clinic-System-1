@@ -20,7 +20,7 @@ export class PatientProfileComponent implements OnInit {
   paitentDataForm!: FormGroup;
   checkNote!: string;
   diagnose!: string;
-  patientData = new Patient();
+  patientData: Patient;
   selectedDrugType = 'drops';
   editMode = false;
   items = [
@@ -43,28 +43,32 @@ export class PatientProfileComponent implements OnInit {
     private loadingService: LoadingService,
     private drugsService: DrugsService,
     private messageService: MessageService
-  ) {}
+  ) {
+    this.patientData = new Patient();
+  }
 
   ngOnInit(): void {
     this.sightForm = new FormGroup({
-      near: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      far: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      lbcva: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      rbcva: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      rdsph: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      ldsph: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      rdcyl: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      ldcyl: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      rdaxis: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      ldaxis: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      rrsph: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      lrsph: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      rrcyl: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      lrcyl: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      rraxis: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      lraxis: new FormControl({ value: null, disabled: this.type == 'nurse' }),
-      note: new FormControl({ value: null, disabled: this.type == 'nurse' }),
+      near: new FormControl(null),
+      far: new FormControl(null),
+      lbcva: new FormControl(null),
+      rbcva: new FormControl(null),
+      rdsph: new FormControl(null),
+      ldsph: new FormControl(null),
+      rdcyl: new FormControl(null),
+      ldcyl: new FormControl(null),
+      rdaxis: new FormControl(null),
+      ldaxis: new FormControl(null),
+      rrsph: new FormControl(null),
+      lrsph: new FormControl(null),
+      rrcyl: new FormControl(null),
+      lrcyl: new FormControl(null),
+      rraxis: new FormControl(null),
+      lraxis: new FormControl(null),
+      note: new FormControl(null),
     });
+    this.type === 'nurse' ? this.sightForm.disable() : this.sightForm.enable();
+
     this.paitentDataForm = new FormGroup({
       name: new FormControl(null),
       phoneNumber: new FormControl(null),
@@ -85,8 +89,9 @@ export class PatientProfileComponent implements OnInit {
         next: (res) => {
           console.log(res);
           this.patientData = res.data;
+          const note = res.data.visualAcuity.note;
           this.sightForm.setValue(res.data.visualAcuity);
-          let { name, phoneNumber, age, gender, appointmentType } = res.data;
+          const { name, phoneNumber, age, gender, appointmentType } = res.data;
           this.paitentDataForm.setValue({
             name,
             phoneNumber,
@@ -95,21 +100,33 @@ export class PatientProfileComponent implements OnInit {
             appointmentType,
           });
           this.items = [];
-          res.data.allChecks[
-            res.data.allChecks.length - 1
-          ].check.treatments.forEach((check) => {
+          if (res.data.allChecks.length > 0) {
+            res.data.allChecks[
+              res.data.allChecks.length - 1
+            ].check.treatments.forEach((check) => {
+              const item = {
+                id: this.items.length,
+                selectedType: check.type,
+                name: check.treatment,
+                noOfTakes: check.noOfTakes,
+                period: check.period,
+                note: check.note,
+              };
+              this.items.push(item);
+            });
+            this.checkNote =
+              res.data.allChecks[res.data.allChecks.length - 1].check.note;
+          } else {
             const item = {
               id: this.items.length,
-              selectedType: check.type,
-              name: check.treatment,
-              noOfTakes: check.noOfTakes,
-              period: check.period,
-              note: check.note,
+              selectedType: 'drops',
+              name: '',
+              noOfTakes: '',
+              period: '',
+              note: '',
             };
             this.items.push(item);
-          });
-          this.checkNote =
-            res.data.allChecks[res.data.allChecks.length - 1].check.note;
+          }
           this.loadingService.isLoading.next(false);
           console.log(this.items);
         },
@@ -145,6 +162,7 @@ export class PatientProfileComponent implements OnInit {
             summary: 'Faild to save',
             detail: 'Check your internet and try again',
           });
+          console.log(err);
         },
       });
   }
@@ -196,7 +214,7 @@ export class PatientProfileComponent implements OnInit {
 
   MakeAppint() {
     this.patientsService
-      .addToWaitingList(this.patientData._id, 'appointment')
+      .addToWaitingList(this.patientData._id, 'check up')
       .subscribe({
         next: (res) => {
           this.router.navigateByUrl('/nurse/home');
@@ -220,9 +238,9 @@ export class PatientProfileComponent implements OnInit {
         },
       });
   }
-  MakeConsultant() {
+  MakeConsultation() {
     this.patientsService
-      .addToWaitingList(this.patientData._id, 'consultant')
+      .addToWaitingList(this.patientData._id, 'consultation')
       .subscribe({
         next: (res) => {
           this.loadingService.isLoading.next(false);
@@ -313,6 +331,18 @@ export class PatientProfileComponent implements OnInit {
           });
         },
       });
+  }
+  editPaienttData() {
+    this.editMode = true;
+    const { name, phoneNumber, age, gender, appointmentType } =
+      this.patientData;
+    this.paitentDataForm.setValue({
+      name,
+      phoneNumber,
+      age,
+      gender,
+      appointmentType,
+    });
   }
   changeDir(e: any) {
     console.log(e.target);
