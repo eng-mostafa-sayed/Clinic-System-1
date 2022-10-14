@@ -18,7 +18,7 @@
     <div>
       <span class="sub">Gender:</span>
       <span *ngIf="nextPatient.gender == 'male'" style="color: #51bfe0"
-        >Male<i class="fa-solid fa-mars"></i>
+        >Male <i class="fa-solid fa-mars"></i>
       </span>
       <span *ngIf="nextPatient.gender == 'female'" style="color: #e64893">
         Female <i class="fa-solid fa-venus"></i
@@ -47,12 +47,12 @@
       <div><span class="sub">Age:</span>{{ patient.age }}</div>
       <div>
         <span class="sub">Gender:</span>
-        <span *ngIf="patient.gender == 'male'" style="color: #51bfe0"
-          ><i class="fa-solid fa-mars"></i> Male</span
-        >
-        <span *ngIf="patient.gender == 'female'" style="color: #e64893">
-          <i class="fa-solid fa-venus"></i>Female</span
-        >
+        <span *ngIf="nextPatient.gender == 'male'" style="color: #51bfe0"
+          >Male <i class="fa-solid fa-mars"></i>
+        </span>
+        <span *ngIf="nextPatient.gender == 'female'" style="color: #e64893">
+          Female <i class="fa-solid fa-venus"></i
+        ></span>
       </div>
       <div><span class="sub">Phone:</span>{{ patient.phoneNumber }}</div>
       <div>

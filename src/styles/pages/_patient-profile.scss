@@ -60,7 +60,6 @@ body {
     padding-top: 6.2rem;
     margin-top: -4rem;
     font-size: 1.5rem;
-
     display: grid;
     grid-template-columns: repeat(2, minmax(50%, 1fr));
     row-gap: 2rem;
@@ -121,6 +120,7 @@ body {
   &__sight-1 {
     display: grid;
     grid-template-columns: min-content min-content 1fr min-content 1fr;
+    align-items: center;
     column-gap: 2rem;
     row-gap: 2rem;
     padding: 2rem;
@@ -159,7 +159,7 @@ body {
   }
   &__meds {
     display: grid;
-    grid-template-columns: 1fr 120px 80px 80px 15px 15px;
+    grid-template-columns: 1fr 120px 100px 80px 15px 15px;
     column-gap: 1rem;
     row-gap: 2rem;
     padding: 2rem;

@@ -338,7 +338,7 @@
       <span class="R"></span>
       <h4>Medications</h4>
       <h4>Type</h4>
-      <h4>No.takes</h4>
+      <h4>No.takes/day</h4>
       <h4>Period</h4>
       <span class="action"></span>
       <span class="action"></span>
@@ -373,6 +373,7 @@
         <input
           [disabled]="type == 'nurse'"
           class="input"
+          type="number"
           min="1"
           [(ngModel)]="item.noOfTakes"
           (keyup)="changeDir($event)"
