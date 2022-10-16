@@ -10,7 +10,7 @@
       [sortOrder]="-1"
     >
       <ng-template pTemplate="caption">
-        Treated Patients ({{ patientsLength }})
+        Today's patients ({{ patientsLength }})
       </ng-template>
       <ng-template pTemplate="header">
         <tr>
@@ -19,11 +19,10 @@
             <p-columnFilter type="date" field="date"></p-columnFilter>
             <!-- <p-sortIcon field="date"></p-sortIcon> -->
           </th>
-          <!-- <th>
-            <div class="table__title">ID</div>
-            <p-columnFilter type="text" field="_id"></p-columnFilter>
-            <p-sortIcon field="_id"></p-sortIcon>
-          </th> -->
+          <th>
+            <div class="table__title">File Number</div>
+            <p-columnFilter type="text" field="fileNo"></p-columnFilter>
+          </th>
           <th>
             <div class="table__title">Name</div>
             <p-columnFilter type="text" field="name"></p-columnFilter>
@@ -53,10 +52,10 @@
             <span class="p-column-title"> Date </span>
             {{ patient.date | date: "medium" }}
           </td>
-          <!-- <td>
-            <span class="p-column-title"> patient ID</span>
-            {{ patient._id }}
-          </td> -->
+          <td>
+            <span class="p-column-title"> File Number</span>
+            {{ patient.fileNo }}
+          </td>
           <td>
             <span class="p-column-title"> Name</span>
             {{ patient.name }}

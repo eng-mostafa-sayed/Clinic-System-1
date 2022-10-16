@@ -112,8 +112,10 @@ body {
       }
       @media print {
         display: none;
-        border: none;
       }
+    }
+    @media print {
+      border: none;
     }
   }
 
