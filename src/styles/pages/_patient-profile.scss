@@ -263,19 +263,24 @@ body {
   .header {
     display: none !important;
     justify-content: space-between;
+    align-items: center;
     text-align: center;
     border-bottom: 2px solid #000;
     padding-bottom: 5px;
     img {
-      width: 70px;
+      width: 100px;
       height: 100%;
     }
     div {
-      width: 290px;
+      width: 350px;
       display: flex;
       flex-direction: column;
       font-family: Cairo;
-      font-size: 14px;
+      font-size: 12px;
+      line-height: 20px;
+      strong {
+        font-size: 16px;
+      }
     }
     .en-data {
     }
