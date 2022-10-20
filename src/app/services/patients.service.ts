@@ -42,7 +42,7 @@ export class PatientsService {
   addVisualAcuity(id: string, patientData: Sight) {
     return this.http.put(`${this.rootURL}/allpatients/v/${id}`, patientData);
   }
-  addCheck(id: string, data: { check: Check }) {
+  addCheck(id: string, data: Check) {
     return this.http.put(`${this.rootURL}/allpatients/${id}`, data);
   }
   addNewPatient(data: any) {

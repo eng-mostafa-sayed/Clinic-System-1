@@ -185,7 +185,9 @@ export class PatientProfileComponent implements OnInit {
       });
     });
     check.note = this.checkNote;
-    this.patientsService.addCheck(this.patientData._id, { check }).subscribe({
+    check.diagnosis = this.diagnose;
+    console.log(check, this.diagnose);
+    this.patientsService.addCheck(this.patientData._id, check).subscribe({
       next: (res) => {
         this.loadingService.isLoading.next(false);
         this.messageService.add({
