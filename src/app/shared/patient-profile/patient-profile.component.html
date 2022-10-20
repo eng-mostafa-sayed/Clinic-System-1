@@ -410,13 +410,13 @@
       </ng-container>
     </div>
     <button
-      class="btn-1"
+      class="add-med"
       type="button"
       (click)="addNewDrug()"
       *ngIf="type == 'doctor'"
     >
       <!-- <i class="fa-solid fa-kit-medical"></i> -->
-      Add new
+      <i class="fa-solid fa-file-medical"></i>
     </button>
     <div class="hide diagnose">
       <label for="diagnose">Diagnosis</label>
@@ -441,6 +441,15 @@
     </div>
     <div class="patient__form__action">
       <button
+        class="btn-3"
+        *ngIf="type == 'doctor'"
+        type="button"
+        style="align-self: flex-start"
+        (click)="showHistory = !showHistory"
+      >
+        <i class="fa-solid fa-book-medical"></i> History
+      </button>
+      <button
         class="btn-1"
         *ngIf="type == 'doctor'"
         type="button"
@@ -460,6 +469,34 @@
       <button type="button" class="btn-2" (click)="printMeds()">
         <span></span>Print
       </button>
+    </div>
+    <div class="history hide" *ngIf="showHistory">
+      <div class="history__close" (click)="showHistory = false">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      <div class="history__meds" *ngFor="let check of allChecks">
+        <h4>Medications</h4>
+        <h4>Type</h4>
+        <h4>No.takes/day</h4>
+        <h4>Period</h4>
+        <h4>Note</h4>
+        <ng-container *ngFor="let treatment of check.treatments">
+          <span>{{ treatment.treatment }}</span>
+          <span>{{ treatment.type }}</span>
+          <span>{{ treatment.noOfTakes }}</span>
+          <span>{{ treatment.period }}</span>
+          <span>{{ treatment.note }}</span>
+        </ng-container>
+        <span class="history__diagnosis">
+          <strong>Diagnosis:</strong>{{ check.diagnosis }}
+        </span>
+        <span class="history__notes">
+          <strong>Notes:</strong> {{ check.note }}</span
+        >
+        <h3 class="history__date">
+          {{ check.date }} <i class="fa-regular fa-clock"></i>
+        </h3>
+      </div>
     </div>
   </div>
 </div>

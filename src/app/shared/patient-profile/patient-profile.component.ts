@@ -36,6 +36,8 @@ export class PatientProfileComponent implements OnInit {
   drugs: Drug[] = [];
   drugTypes: any = [];
   isSight = true;
+  showHistory = false;
+  allChecks!: Check[];
   constructor(
     private patientsService: PatientsService,
     private route: ActivatedRoute,
@@ -99,23 +101,27 @@ export class PatientProfileComponent implements OnInit {
             gender,
             appointmentType,
           });
+          const last =
+            res.data.allChecks.length === 0 ? 0 : res.data.allChecks.length - 1;
           this.items = [];
           if (res.data.allChecks.length > 0) {
-            res.data.allChecks[
-              res.data.allChecks.length - 1
-            ].check.treatments.forEach((check) => {
+            console.log(res.data.allChecks[last]);
+            res.data.allChecks[last].treatments.forEach((treatment) => {
               const item = {
                 id: this.items.length,
-                selectedType: check.type,
-                name: check.treatment,
-                noOfTakes: check.noOfTakes,
-                period: check.period,
-                note: check.note,
+                selectedType: treatment.type,
+                name: treatment.treatment,
+                noOfTakes: treatment.noOfTakes,
+                period: treatment.period,
+                note: treatment.note,
               };
               this.items.push(item);
             });
             this.checkNote =
-              res.data.allChecks[res.data.allChecks.length - 1].check.note;
+              res.data.allChecks[res.data.allChecks.length - 1].note;
+            this.diagnose =
+              res.data.allChecks[res.data.allChecks.length - 1].diagnosis;
+            this.allChecks = res.data.allChecks;
           } else {
             const item = {
               id: this.items.length,
@@ -127,8 +133,8 @@ export class PatientProfileComponent implements OnInit {
             };
             this.items.push(item);
           }
+          this.allChecks = res.data.allChecks;
           this.loadingService.isLoading.next(false);
-          console.log(this.items);
         },
         error: (error) => {
           console.log(error);

@@ -13,6 +13,6 @@ export class Patient {
   'appointmentType': string;
   'status': boolean;
   'diagnoses': string;
-  'allChecks': { check: Check; note: string }[];
+  'allChecks': Check[];
   'visualAcuity': Sight;
 }

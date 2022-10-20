@@ -7,4 +7,6 @@ export class Check {
     type: string;
   }[];
   'note': string;
+  'diagnosis': string;
+  'date': Date;
 }
