@@ -9,6 +9,7 @@ import { Patient } from '../../models/patient.model';
 export class PatientsComponent implements OnInit {
   @Input() patientsData: Patient[] = [];
   @Input() patientsLength: number = 0;
+  @Input() heading: string = '';
   constructor() {}
 
   ngOnInit(): void {}

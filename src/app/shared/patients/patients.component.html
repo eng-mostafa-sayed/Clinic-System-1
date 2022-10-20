@@ -10,7 +10,7 @@
       [sortOrder]="-1"
     >
       <ng-template pTemplate="caption">
-        Today's patients ({{ patientsLength }})
+        {{ heading }} ({{ patientsLength }})
       </ng-template>
       <ng-template pTemplate="header">
         <tr>
@@ -50,7 +50,7 @@
         <tr>
           <td>
             <span class="p-column-title"> Date </span>
-            {{ patient.date | date: "medium" }}
+            {{ patient.date | date: "dd/M/yyyy" }}
           </td>
           <td>
             <span class="p-column-title"> File Number</span>
