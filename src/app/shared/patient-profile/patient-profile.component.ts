@@ -117,10 +117,8 @@ export class PatientProfileComponent implements OnInit {
               };
               this.items.push(item);
             });
-            this.checkNote =
-              res.data.allChecks[res.data.allChecks.length - 1].note;
-            this.diagnose =
-              res.data.allChecks[res.data.allChecks.length - 1].diagnosis;
+            this.checkNote = res.data.allChecks[last].note;
+            this.diagnose = res.data.allChecks[last].diagnosis;
             this.allChecks = res.data.allChecks;
           } else {
             const item = {
@@ -173,6 +171,7 @@ export class PatientProfileComponent implements OnInit {
       });
   }
   addCheck() {
+    this.loadingService.isLoading.next(true);
     const check = new Check();
     check.treatments = [];
     this.items.forEach((item) => {
