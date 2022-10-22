@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { PatientsComponent } from './patients/patients.component';
 import { HomeComponent } from './home/home.component';
@@ -27,6 +28,7 @@ import { NavComponent } from './nav/nav.component';
     CommonModule,
     RouterModule,
     ToastModule,
+    ConfirmDialogModule,
   ],
   exports: [
     PatientsComponent,

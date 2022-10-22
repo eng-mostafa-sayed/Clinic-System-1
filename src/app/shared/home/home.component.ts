@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Patient } from 'src/app/models/patient.model';
 import { LoadingService } from 'src/app/services/loading.service';
 import { PatientsService } from 'src/app/services/patients.service';
@@ -18,7 +19,9 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private patientsService: PatientsService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +37,36 @@ export class HomeComponent implements OnInit {
       }
       this.inqueuelength = res.data.length;
       this.loadingService.isLoading.next(false);
+    });
+  }
+  CancelFromWaiting(patient: Patient) {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to cancel this patient?',
+      accept: () => {
+        this.patientsService.cancelFromWaitingList(patient._id).subscribe({
+          next: (res) => {
+            if (patient._id === this.nextPatient._id) {
+              this.nextPatient = this.inqueuePatients.shift()!;
+            }
+            this.inqueuePatients = this.inqueuePatients.filter((p) => {
+              return p._id !== patient._id;
+            });
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Canceled Successfully',
+              detail: 'Patient has been canceled',
+            });
+          },
+          error: (err) => {
+            console.log(err);
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Faild to cancel',
+              detail: 'Check your internet and try again',
+            });
+          },
+        });
+      },
     });
   }
 }

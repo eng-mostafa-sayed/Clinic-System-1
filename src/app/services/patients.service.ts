@@ -39,6 +39,9 @@ export class PatientsService {
   removeFromWaitingList(id: string) {
     return this.http.delete(`${this.rootURL}/allpatients/waiting/${id}`);
   }
+  cancelFromWaitingList(id: string) {
+    return this.http.put(`${this.rootURL}/allpatients/waiting/${id}`, {});
+  }
   addVisualAcuity(id: string, patientData: Sight) {
     return this.http.put(`${this.rootURL}/allpatients/v/${id}`, patientData);
   }

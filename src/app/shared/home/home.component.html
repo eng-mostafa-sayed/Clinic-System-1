@@ -1,3 +1,6 @@
+<p-confirmDialog header="Confirmation"></p-confirmDialog>
+<p-toast> </p-toast>
+
 <div class="queue">
   <div
     class="container"
@@ -5,13 +8,21 @@
   >
     <h2 class="queue__header">
       <span> Next patient</span>
-      <span
+      <button
         class="btn-1"
         routerLink="../patients/{{ nextPatient._id }}"
         *ngIf="type == 'doctor'"
       >
-        Add Check</span
+        Add Check
+      </button>
+      <button
+        class="btn-3"
+        style="background-color: rgb(155, 0, 0)"
+        (click)="CancelFromWaiting(nextPatient)"
+        *ngIf="type == 'nurse'"
       >
+        <i class="fa-solid fa-user-xmark"></i>
+      </button>
     </h2>
     <div><span class="sub">Name:</span>{{ nextPatient.name }}</div>
     <div><span class="sub">Age:</span>{{ nextPatient.age }}</div>
@@ -44,7 +55,22 @@
     </h2>
     <ng-container *ngFor="let patient of inqueuePatients">
       <div><span class="sub">Name:</span>{{ patient.name }}</div>
-      <div><span class="sub">Age:</span>{{ patient.age }}</div>
+      <div style="position: relative">
+        <span class="sub">Age:</span>{{ patient.age }}
+        <button
+          class="btn-3"
+          style="
+            background-color: rgb(155, 0, 0);
+            position: absolute;
+            right: 0;
+            top: 0;
+          "
+          (click)="CancelFromWaiting(patient)"
+          *ngIf="type == 'nurse'"
+        >
+          <i class="fa-solid fa-user-xmark"></i>
+        </button>
+      </div>
       <div>
         <span class="sub">Gender:</span>
         <span *ngIf="patient.gender == 'male'" style="color: #51bfe0"

@@ -9,8 +9,10 @@
     outline: none;
     border: 1px solid $color-secondary-1;
   }
-  &:disabled {
+  &:disabled,
+  &:disabled > option {
     color: #000;
+    opacity: 1;
     background-color: #fff;
   }
 }
