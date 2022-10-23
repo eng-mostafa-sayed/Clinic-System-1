@@ -4,7 +4,13 @@
 <div class="queue">
   <div
     class="container"
-    [ngClass]="nextPatient.gender == 'male' ? 'male' : 'female'"
+    [ngClass]="
+      nextPatient.gender === 'male'
+        ? 'male'
+        : 'default' && nextPatient.gender == 'female'
+        ? 'female'
+        : 'default'
+    "
   >
     <h2 class="queue__header">
       <span> Next patient</span>
@@ -19,7 +25,7 @@
         class="btn-3"
         style="background-color: rgb(155, 0, 0)"
         (click)="CancelFromWaiting(nextPatient)"
-        *ngIf="type == 'nurse'"
+        *ngIf="type == 'nurse' && nextPatient.name"
       >
         <i class="fa-solid fa-user-xmark"></i>
       </button>

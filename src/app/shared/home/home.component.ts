@@ -46,11 +46,18 @@ export class HomeComponent implements OnInit {
         this.patientsService.cancelFromWaitingList(patient._id).subscribe({
           next: (res) => {
             if (patient._id === this.nextPatient._id) {
-              this.nextPatient = this.inqueuePatients.shift()!;
+              if (this.inqueuePatients.length > 0) {
+                this.nextPatient = this.inqueuePatients.shift()!;
+                this.inqueuelength = this.inqueuePatients.length;
+              } else {
+                this.nextPatient = new Patient();
+              }
+            } else {
+              this.inqueuePatients = this.inqueuePatients.filter((p) => {
+                return p._id !== patient._id;
+              });
+              this.inqueuelength = this.inqueuePatients.length;
             }
-            this.inqueuePatients = this.inqueuePatients.filter((p) => {
-              return p._id !== patient._id;
-            });
             this.messageService.add({
               severity: 'success',
               summary: 'Canceled Successfully',
