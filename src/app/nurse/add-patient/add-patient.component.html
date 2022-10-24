@@ -21,8 +21,15 @@
     <input formControlName="phoneNumber" type="text" class="input" id="phone" />
 
     <label for="age">Age</label>
-    <input formControlName="age" type="text" class="input" id="age" />
-
+    <input
+      formControlName="age"
+      type="number"
+      class="input"
+      id="age"
+      step="1"
+      max="100"
+      min="0"
+    />
     <label for="gender">Gender</label>
     <select formControlName="gender" id="gender" class="input">
       <option value="male">Male</option>
@@ -61,6 +68,34 @@
         Dr.Essam
       </option>
     </select> -->
-    <button class="btn-1" type="submit">Save</button>
+    <div class="validation-notes">
+      <span
+        class="note"
+        *ngIf="
+          newPatientForm.get('name')?.invalid &&
+          newPatientForm.get('name')?.dirty
+        "
+        >*Name is required</span
+      >
+      <span
+        class="note"
+        *ngIf="
+          newPatientForm.get('phoneNumber')?.invalid &&
+          newPatientForm.get('phoneNumber')?.dirty
+        "
+        >*Phone is required</span
+      >
+      <span
+        class="note"
+        *ngIf="
+          newPatientForm.get('age')?.invalid && newPatientForm.get('age')?.dirty
+        "
+        >*Age must be between 1 and 100</span
+      >
+    </div>
+
+    <button class="btn-1" type="submit" [disabled]="newPatientForm.invalid">
+      Save
+    </button>
   </form>
 </div>

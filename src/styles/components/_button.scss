@@ -6,7 +6,12 @@
   padding: 10px 30px;
   transition: all 0.5s ease-in-out;
   position: relative;
+  border: none;
   cursor: pointer;
+}
+.btn-1:disabled {
+  cursor: not-allowed;
+  filter: brightness(50%);
 }
 .btn-1::before,
 .btn-1::after {
@@ -30,8 +35,8 @@
 }
 .btn-1:hover::after,
 .btn-1:hover::before {
-  width: 105%;
-  height: 105%;
+  width: calc(100% + 13px);
+  height: calc(100% + 13px);
 }
 
 // Btn 2

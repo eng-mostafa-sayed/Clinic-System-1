@@ -24,8 +24,11 @@ export class AddPatientComponent implements OnInit {
       name: new FormControl(null, Validators.required),
       phoneNumber: new FormControl(null, Validators.required),
       age: new FormControl(null, Validators.required),
-      gender: new FormControl('male', Validators.required),
-      appointmentType: new FormControl('appointment', Validators.required),
+      gender: new FormControl('male', [
+        Validators.required,
+        Validators.max(100),
+      ]),
+      appointmentType: new FormControl('check up', Validators.required),
     });
   }
 
