@@ -73,7 +73,7 @@ export class AddPatientComponent implements OnInit {
         let patientNumber = res.data.length;
         const patient = {
           ...this.newPatientForm.value,
-          fileNo: '0' + (patientNumber + 1),
+          fileNo: '00' + (patientNumber + 1),
         };
         this.patientsService.addNewPatient(patient).subscribe({
           next: (res) => {
@@ -86,7 +86,6 @@ export class AddPatientComponent implements OnInit {
           },
           error: (err) => {
             console.log(err);
-            console.log('falsed');
             this.loadingService.isLoading.next(false);
             this.messageService.add({
               severity: 'error',

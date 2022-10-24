@@ -1,4 +1,8 @@
 .nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 8888;
   width: 100%;
   background-color: $color-primary;
   color: #fff;
