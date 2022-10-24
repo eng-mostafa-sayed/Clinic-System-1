@@ -336,11 +336,11 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: scroll;
+    overflow-y: scroll;
     background-color: rgba(0, 0, 0, 0.664);
     color: #fff;
     backdrop-filter: blur(10px);
-    z-index: 999;
+    z-index: 9999;
     padding-top: 40px;
     &__close {
       position: absolute;

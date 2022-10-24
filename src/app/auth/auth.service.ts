@@ -11,7 +11,7 @@ export class AuthService {
   rootURL = 'https://clinic-system-new.herokuapp.com/api';
   authStatusListener$ = new BehaviorSubject<boolean>(false);
   isAuthenticated = false;
-  token: string = 'dasdasd';
+  token: string = '';
   authorizationHeader = `bearer ${this.token}`;
   constructor(
     private http: HttpClient,
@@ -46,6 +46,7 @@ export class AuthService {
         },
         error: (err) => {
           console.log(err);
+          this.authStatusListener$.next(false);
           this.loadingService.isLoading.next(false);
         },
       });

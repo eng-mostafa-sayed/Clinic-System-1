@@ -11,6 +11,7 @@ import { AuthService } from '../auth.service';
 })
 export class SigninComponent implements OnInit {
   loginForm: FormGroup;
+  error = false;
   constructor(
     private authService: AuthService,
     private loadingService: LoadingService
@@ -21,7 +22,11 @@ export class SigninComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.authStatusListener$.subscribe((authenticated) => {
+      this.error = !authenticated;
+    });
+  }
   login() {
     this.loadingService.isLoading.next(true);
     this.authService.signin(

@@ -1,7 +1,6 @@
 <div class="signin">
   <div class="signin__box">
     <h1>Signin</h1>
-
     <form (ngSubmit)="login()" [formGroup]="loginForm">
       <select class="input" formControlName="username">
         <option ngValue="doctor">Doctor</option>
@@ -14,6 +13,11 @@
         id="password"
         formControlName="password"
       />
+      <span
+        *ngIf="error"
+        style="color: #870000; display: block; margin-top: 5px"
+        >*Incorrect password</span
+      >
       <button type="submit" class="btn-1">Signin</button>
     </form>
   </div>
