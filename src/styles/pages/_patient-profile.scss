@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;700&display=swap");
+
 body {
   @media print {
     background-color: #fff;
@@ -282,6 +284,7 @@ body {
     justify-content: space-between;
     align-items: center;
     text-align: center;
+    justify-content: end;
     border-bottom: 2px solid #000;
     padding-bottom: 5px;
     img {
@@ -292,8 +295,7 @@ body {
       width: 350px;
       display: flex;
       flex-direction: column;
-      font-family: Cairo;
-      font-size: 12px;
+      font-size: 14px;
       line-height: 20px;
       strong {
         font-size: 18px;
@@ -302,7 +304,7 @@ body {
     .en-data {
     }
     .ar-data {
-      font-family: Cairo;
+      font-family: "Noto Naskh Arabic";
     }
   }
   .body {
@@ -318,16 +320,17 @@ body {
     position: absolute;
     bottom: 0;
     flex-direction: column;
-    font-family: Cairo;
-    font-size: 14px;
+    font-size: 15px;
     text-align: left;
     border-top: 2px solid #000;
+    width: 100%;
     padding-top: 5px;
     div {
       text-align: right;
     }
   }
   .printable {
+    font-family: "Noto Naskh Arabic" !important;
     @media print {
       display: flex !important;
     }
