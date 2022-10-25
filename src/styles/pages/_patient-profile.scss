@@ -167,6 +167,9 @@ body {
     padding: 2rem;
     @media print {
       grid-template-columns: 20px 1fr 80px 100px 80px;
+      * {
+        text-align: center;
+      }
     }
   }
   .R {

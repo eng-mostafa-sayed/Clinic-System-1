@@ -334,14 +334,25 @@
     </form>
 
     <!-- Check -->
+    <div class="hide diagnose">
+      <label for="diagnose">Diagnosis</label>
+      <input
+        id="diagnose"
+        type="text"
+        [(ngModel)]="diagnose"
+        class="input"
+        [disabled]="type === 'nurse'"
+        (keyup)="changeDir($event)"
+      />
+    </div>
     <div class="patient__meds" [ngClass]="{ hide: isSight }">
       <span class="R"></span>
       <h4>Medications</h4>
       <h4>Type</h4>
       <h4>No.takes/day</h4>
       <h4>Period</h4>
-      <span class="action"></span>
-      <span class="action"></span>
+      <span class="action hide"></span>
+      <span class="action hide"></span>
       <ng-container *ngFor="let item of items">
         <span class="R">R/</span>
         <select
@@ -370,15 +381,13 @@
             {{ type }}
           </option>
         </select>
+
         <input
           [disabled]="type == 'nurse'"
           class="input"
-          type="number"
-          min="1"
-          [(ngModel)]="item.noOfTakes"
           (keyup)="changeDir($event)"
+          [(ngModel)]="item.noOfTakes"
         />
-
         <input
           [disabled]="type == 'nurse'"
           class="input"
@@ -418,7 +427,7 @@
       <!-- <i class="fa-solid fa-kit-medical"></i> -->
       <i class="fa-solid fa-file-medical"></i>
     </button>
-    <div class="hide diagnose">
+    <!-- <div class="hide diagnose">
       <label for="diagnose">Diagnosis</label>
       <input
         id="diagnose"
@@ -428,7 +437,7 @@
         [disabled]="type === 'nurse'"
         (keyup)="changeDir($event)"
       />
-    </div>
+    </div> -->
     <div class="notes" [ngClass]="{ hide: isSight }">
       <span>Notes:</span>
       <textarea
@@ -466,7 +475,12 @@
           أستشارة
         </button>
       </div>
-      <button type="button" class="btn-2" (click)="printMeds()">
+      <button
+        type="button"
+        *ngIf="type == 'doctor'"
+        class="btn-2"
+        (click)="printMeds()"
+      >
         <span></span>Print
       </button>
     </div>
