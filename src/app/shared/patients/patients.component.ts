@@ -13,4 +13,7 @@ export class PatientsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+  clickOnFilter(event: Event) {
+    event.stopPropagation();
+  }
 }
