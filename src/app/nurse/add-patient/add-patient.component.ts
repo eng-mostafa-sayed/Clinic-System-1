@@ -40,7 +40,7 @@ export class AddPatientComponent implements OnInit {
         let patientNumber = res.data.length;
         const patient = {
           ...this.newPatientForm.value,
-          fileNo: '0' + (patientNumber + 1),
+          fileNo: '00' + (patientNumber + 1),
         };
         this.patientsService.addNewPatient(patient).subscribe({
           next: (res) => {
