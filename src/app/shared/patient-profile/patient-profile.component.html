@@ -27,12 +27,16 @@
       </div>
       <div style="width: 55%">
         <div>Diagnosis: {{ diagnose }}</div>
-        <div>
-          BCVA:
-          <span *ngIf="patientData.visualAcuity?.rbcva">
-            Rt: {{ patientData.visualAcuity.rbcva }} / Lt:
-            {{ patientData.visualAcuity.lbcva }}</span
+        <div style="display: flex; gap: 10px">
+          <span>BCVA: </span>
+          <span
+            *ngIf="patientData.visualAcuity?.rbcva"
+            style="display: flex; justify-content: space-between; gap: 20px"
           >
+            <span>Rt: {{ patientData.visualAcuity.rbcva }}</span>
+            <span>/</span>
+            <span>Lt: {{ patientData.visualAcuity.lbcva }}</span>
+          </span>
         </div>
       </div>
     </div>

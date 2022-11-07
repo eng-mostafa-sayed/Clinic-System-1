@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;700&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
 body {
   @media print {
     background-color: #fff;
@@ -168,7 +168,7 @@ body {
     row-gap: 2rem;
     padding: 2rem;
     @media print {
-      grid-template-columns: 20px 1fr 80px 100px 80px;
+      grid-template-columns: 30px 1fr 80px 100px 80px;
       * {
         text-align: center;
       }
@@ -176,6 +176,7 @@ body {
   }
   .R {
     display: none;
+    font-family: "Great Vibes", cursive;
     @media print {
       display: block;
       align-self: center;
@@ -300,11 +301,17 @@ body {
       strong {
         font-size: 18px;
       }
+      b {
+        font-size: 16px;
+      }
     }
     .en-data {
     }
     .ar-data {
       font-family: "Noto Naskh Arabic";
+      strong {
+        font-size: 24px;
+      }
     }
   }
   .body {
