@@ -297,20 +297,26 @@ body {
       display: flex;
       flex-direction: column;
       font-size: 14px;
-      line-height: 20px;
+      line-height: 21px;
+    }
+    .en-data {
+      font-family: "Cairo" !important;
       strong {
         font-size: 18px;
       }
-      b {
-        font-size: 16px;
+      span:first-child {
+        font-weight: bold;
+        font-size: 18px;
       }
-    }
-    .en-data {
     }
     .ar-data {
       font-family: "Noto Naskh Arabic";
       strong {
         font-size: 24px;
+      }
+      span:first-child {
+        font-size: 24px;
+        margin-bottom: 3px;
       }
     }
   }

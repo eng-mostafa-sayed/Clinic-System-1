@@ -5,7 +5,7 @@
     <h1 class="patient__title">Patient Data</h1>
     <div class="header printable">
       <div class="en-data">
-        <b>DR.</b>
+        <span>DR.</span>
         <strong>ESSAM KHEDR</strong>
         <span> Consultant and Eye Surgeon </span>
         <span>Member of the Egyptian Society of Catarct and Refraction </span>
@@ -13,11 +13,13 @@
       </div>
       <img src="../../../assets/logo.svg" alt="" />
       <div class="ar-data">
-        <b>دكتور</b>
-        <strong>عصام خضر</strong>
-        <span>إستشاري وجراح العيون</span>
-        <span>عضو الجمعية المصرية للمياة البيضاء والإنكسار</span>
-        <span>أخصائي العلاج بالليزر</span>
+        <span>دكتـــور</span>
+        <strong>عصـــام خضـــر</strong>
+        <span>إستشاري وجـراح العيـون</span>
+        <span style="font-size: 11px"
+          >عضو الجمعية المصرية للمياة البيضاء والإنكسار</span
+        >
+        <span>أخصائـي العـلاج بالليـزر</span>
       </div>
     </div>
     <div class="body" [ngClass]="{ printable: !isSight }">
@@ -43,7 +45,7 @@
     <div class="footer printable">
       <div class="address">
         <span> الإسماعلية-الشيخ زايد-برج الطلائع رقم</span>
-        <span>(٢١)</span>
+        <span> (٢١) </span>
         <span> أول الشارع التجاري بجوار مسجد أبو المجد </span>
         <span><i class="fa-solid fa-location-dot"></i></span>
       </div>
