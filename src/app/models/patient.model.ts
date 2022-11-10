@@ -15,4 +15,5 @@ export class Patient {
   'diagnoses': string;
   'allChecks': Check[];
   'visualAcuity': Sight;
+  'waitingTime': Date;
 }

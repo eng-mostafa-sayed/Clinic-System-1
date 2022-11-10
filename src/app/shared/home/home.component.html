@@ -43,7 +43,8 @@
     </div>
     <div><span class="sub">Phone:</span>{{ nextPatient.phoneNumber }}</div>
     <div>
-      <span class="sub">Date:</span>{{ nextPatient.date | date: "medium" }}
+      <span class="sub">Date:</span>{{ nextPatient.date | date: "dd/M/yyyy" }}
+      {{ nextPatient.waitingTime }}
     </div>
     <div>
       <span class="sub">Type:</span>
@@ -88,7 +89,8 @@
       </div>
       <div><span class="sub">Phone:</span>{{ patient.phoneNumber }}</div>
       <div>
-        <span class="sub">Date:</span>{{ patient.date | date: "medium" }}
+        <span class="sub">Date:</span>{{ patient.date | date: "dd/M/yyyy" }}
+        {{ patient.waitingTime }}
       </div>
       <div>
         <span class="sub">Type:</span>
