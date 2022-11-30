@@ -168,7 +168,13 @@ body {
     row-gap: 2rem;
     padding: 2rem;
     @media print {
-      grid-template-columns: 30px 1fr 80px 100px 80px;
+      grid-template-columns: 30px 1fr 80px 80px 80px;
+      input,
+      select,
+      option {
+        font-size: 14px;
+        font-family: "Cairo", sans-serif;
+      }
       * {
         text-align: center;
       }
