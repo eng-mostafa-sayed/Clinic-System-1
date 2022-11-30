@@ -335,7 +335,12 @@
         </div>
         <div class="patient__form__action">
           <button class="btn-1" *ngIf="type == 'doctor'">Save</button>
-          <button type="button" class="btn-2" (click)="printSight()">
+          <button
+            type="button"
+            class="btn-2"
+            (click)="printSight()"
+            [disabled]="type === 'nurse'"
+          >
             <span></span>Print
           </button>
         </div>
@@ -489,6 +494,7 @@
         *ngIf="type == 'doctor'"
         class="btn-2"
         (click)="printMeds()"
+        [disabled]="type === 'nurse'"
       >
         <span></span>Print
       </button>
