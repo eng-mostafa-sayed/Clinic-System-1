@@ -6,7 +6,7 @@
       [paginator]="true"
       [rows]="10"
       [rowsPerPageOptions]="[10, 15, 20]"
-      sortField="date"
+      sortField="updatedAt"
       [sortOrder]="-1"
     >
       <ng-template pTemplate="caption">
@@ -19,7 +19,7 @@
             <p-columnFilter
               (click)="clickOnFilter($event)"
               type="date"
-              field="date"
+              field="updatedAt"
             ></p-columnFilter>
             <!-- <p-sortIcon field="date"></p-sortIcon> -->
           </th>

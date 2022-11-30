@@ -9,6 +9,8 @@ export class Patient {
   'phoneNumber': string;
   'gender': string;
   'date': Date;
+  'createdAt': Date;
+  'cupdatedAt': Date;
   'fileNo': string;
   'appointmentType': string;
   'status': boolean;
