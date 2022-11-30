@@ -28,7 +28,7 @@ export class AuthService {
   signin(username: String, password: String) {
     this.http
       .post<any>(`${this.rootURL}/doctor/login`, {
-        name: 'doctor',
+        name: username,
         password: password,
       })
       .subscribe({
