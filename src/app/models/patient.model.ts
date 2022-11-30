@@ -10,7 +10,7 @@ export class Patient {
   'gender': string;
   'date': Date;
   'createdAt': Date;
-  'cupdatedAt': Date;
+  'updatedAt': Date;
   'fileNo': string;
   'appointmentType': string;
   'status': boolean;

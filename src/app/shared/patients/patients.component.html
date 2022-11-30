@@ -14,13 +14,9 @@
       </ng-template>
       <ng-template pTemplate="header">
         <tr>
-          <th pSortableColumn="date">
+          <th pSortableColumn="updatedAt" width="250px">
             <div class="table__title">Date</div>
-            <p-columnFilter
-              (click)="clickOnFilter($event)"
-              type="date"
-              field="updatedAt"
-            ></p-columnFilter>
+            <p-columnFilter type="date" field="updatedAt"></p-columnFilter>
             <!-- <p-sortIcon field="date"></p-sortIcon> -->
           </th>
           <th pSortableColumn="fileNo">
@@ -74,7 +70,7 @@
         <tr>
           <td>
             <span class="p-column-title"> Date </span>
-            {{ patient.date | date: "dd/M/yyyy" }}
+            {{ patient.updatedAt | date: "short" }}
           </td>
           <td>
             <span class="p-column-title"> File Number</span>

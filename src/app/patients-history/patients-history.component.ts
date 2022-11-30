@@ -19,6 +19,9 @@ export class PatientsHistoryComponent implements OnInit {
   ngOnInit(): void {
     this.loadingService.isLoading.next(true);
     this.patientsService.getAllPatients().subscribe((res) => {
+      res.data.forEach((patient) => {
+        patient.updatedAt = new Date(patient.updatedAt);
+      });
       this.treatedPatients = res.data;
       this.treatedLength = this.treatedPatients.length;
       this.loadingService.isLoading.next(false);
