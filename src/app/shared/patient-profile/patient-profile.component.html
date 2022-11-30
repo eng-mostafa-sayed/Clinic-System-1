@@ -79,7 +79,7 @@
         />
       </div>
       <div class="patient__date">
-        <span class="title">Date: </span>{{ patientData.date }}
+        <span class="title">Date: </span>{{ patientData.date | date: "short" }}
       </div>
       <div class="patient__age" *ngIf="!editMode">
         <span class="title">Age: </span> {{ patientData.age }}
