@@ -142,12 +142,12 @@
       <button
         type="button"
         class="btn-3"
-        *ngIf="!editMode"
+        *ngIf="!editMode && type == 'doctor'"
         (click)="editPaienttData()"
       >
         <i class="fa-solid fa-pen-to-square"></i>
       </button>
-      <button class="btn-3" *ngIf="editMode" type="submit">
+      <button class="btn-3" *ngIf="editMode && type == 'doctor'" type="submit">
         <i class="fa-solid fa-check"></i>
       </button>
     </form>
@@ -339,7 +339,7 @@
             type="button"
             class="btn-2"
             (click)="printSight()"
-            [disabled]="type === 'nurse'"
+            *ngIf="type == 'doctor'"
           >
             <span></span>Print
           </button>
@@ -494,7 +494,6 @@
         *ngIf="type == 'doctor'"
         class="btn-2"
         (click)="printMeds()"
-        [disabled]="type === 'nurse'"
       >
         <span></span>Print
       </button>
