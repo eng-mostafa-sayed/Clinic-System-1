@@ -9,7 +9,7 @@ import { Sight } from '../models/sight.model';
   providedIn: 'root',
 })
 export class PatientsService {
-  private rootURL = 'https://clinic-system-new.herokuapp.com/api';
+  private rootURL = 'https://essamkhedr.herokuapp.com/api';
   patients: Patient[] = [];
   constructor(private http: HttpClient, private authService: AuthService) {}
 

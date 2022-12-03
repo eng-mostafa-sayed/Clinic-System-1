@@ -8,7 +8,7 @@ import { LoadingService } from '../services/loading.service';
   providedIn: 'root',
 })
 export class AuthService {
-  rootURL = 'https://clinic-system-new.herokuapp.com/api';
+  rootURL = 'https://essamkhedr.herokuapp.com/api';
   authStatusListener$ = new BehaviorSubject<boolean>(false);
   isAuthenticated = false;
   token: string = '';
