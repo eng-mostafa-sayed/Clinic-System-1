@@ -38,7 +38,48 @@
   width: calc(100% + 13px);
   height: calc(100% + 13px);
 }
-
+//btn 0 at the home page
+.btn-01 {
+  margin: 0px 0px 0px 62%;
+  font-size: 1.7rem;
+  color: #fff;
+  background-color: $color-primary;
+  border-radius: 4px;
+  padding: 8px 10px;
+  transition: all 0.5s ease-in-out;
+  position: relative;
+  border: none;
+  cursor: pointer;
+}
+.btn-01:disabled {
+  cursor: not-allowed;
+  filter: brightness(50%);
+}
+.btn-01::before,
+.btn-01::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  transition: all 0.5s ease-in-out;
+}
+.btn-01::before {
+  top: -7px;
+  left: -7px;
+  border-top: 3px solid $color-primary;
+  border-left: 3px solid $color-primary;
+}
+.btn-01::after {
+  bottom: -7px;
+  right: -7px;
+  border-bottom: 3px solid $color-primary;
+  border-right: 3px solid $color-primary;
+}
+.btn-01:hover::after,
+.btn-01:hover::before {
+  width: calc(100% + 13px);
+  height: calc(100% + 13px);
+}
 // Btn 2
 .btn-2 {
   font-size: 1.8rem;
@@ -119,6 +160,7 @@
   transition: all 0.4s;
 }
 
+.btn-01:active,
 .btn-3 {
   font-size: 1.8rem;
   color: #fff;
