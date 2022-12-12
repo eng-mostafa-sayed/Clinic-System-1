@@ -27,6 +27,8 @@
       <option ngValue="ampule">Ampule</option>
       <option ngValue="capsule">Capsule</option>
       <option ngValue="sdu">Sdu</option>
+      <option ngValue="suspension">Suspension</option>
+      <option ngValue="syrup">Syrup</option>
     </select>
     <button class="btn-1" style="margin-left: 30px">Add</button>
   </form>
@@ -79,10 +81,10 @@
           <td>
             <p-cellEditor>
               <ng-template pTemplate="input">
-                {{ drug.createdAt | date: "mediumDate" }}
+                {{ drug.createdAt | date : "mediumDate" }}
               </ng-template>
               <ng-template pTemplate="output">
-                {{ drug.createdAt | date: "mediumDate" }}
+                {{ drug.createdAt | date : "mediumDate" }}
               </ng-template>
             </p-cellEditor>
           </td>
