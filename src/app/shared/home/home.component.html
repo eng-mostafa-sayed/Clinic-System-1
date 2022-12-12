@@ -79,7 +79,7 @@
         </button>
         <button
           class="btn-01"
-          routerLink="../patients/{{ nextPatient._id }}"
+          routerLink="../patients/{{ this.patient._id }}"
           *ngIf="type == 'doctor' && nextPatient.name"
         >
           Add Check
