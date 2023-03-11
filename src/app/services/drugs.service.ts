@@ -7,7 +7,7 @@ import { Drug } from '../models/drug.model';
 })
 export class DrugsService {
   baseURL1 = 'https://clinic-system.onrender.com/api/drugs';
-  rootURL = 'https://essamkhedr.herokuapp.com/api/drugs';
+  baseURL = 'https://essamkhedr.herokuapp.com/api/drugs';
   constructor(private http: HttpClient) {}
 
   getAllDrugs() {
