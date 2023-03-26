@@ -26,7 +26,7 @@
     <div class="body" [ngClass]="{ printable: !isSight }">
       <div style="width: 45%">
         <div>Name: {{ patientData.name }}</div>
-        <div>Date: {{ patientData.date | date: "dd/M/yyyy" }}</div>
+        <div>Date: {{ patientData.date | date : "dd/M/yyyy" }}</div>
       </div>
       <div style="width: 55%">
         <div>Diagnosis: {{ diagnose }}</div>
@@ -79,7 +79,7 @@
         />
       </div>
       <div class="patient__date">
-        <span class="title">Date: </span>{{ patientData.date | date: "short" }}
+        <span class="title">Date: </span>{{ patientData.date | date : "short" }}
       </div>
       <div class="patient__age" *ngIf="!editMode">
         <span class="title">Age: </span> {{ patientData.age }}
@@ -161,7 +161,7 @@
         <div class="patient__sight-1">
           <div class="name">Name: {{ patientData.name }}</div>
           <div class="date">
-            Date: {{ patientData.date | date: "d/M/yyyy" }}
+            Date: {{ patientData.date | date : "d/M/yyyy" }}
           </div>
           <div class="fileNo">File number: {{ patientData.fileNo }}</div>
           <label>I.P.D: </label>
@@ -183,21 +183,9 @@
           />
           <label for="RT">BCVA: </label>
           <label for="RT">Rt: </label>
-          <input
-            class="input"
-            type="number"
-            step="0.25"
-            id="RT"
-            formControlName="rbcva"
-          />
+          <input class="input" type="text" id="RT" formControlName="rbcva" />
           <label for="LT">Lt:</label>
-          <input
-            class="input"
-            type="number"
-            step="0.25"
-            id="LT"
-            formControlName="lbcva"
-          />
+          <input class="input" type="text" id="LT" formControlName="lbcva" />
           <div>
             <label for="note">Notes:</label>
             <input
@@ -230,7 +218,8 @@
             <tbody>
               <tr>
                 <td>D</td>
-                <td>
+                <td class="fixPlusSign">
+                  <span *ngIf="+sightForm.get('rdsph')!.value! > 0">+</span>
                   <input
                     type="number"
                     step="0.25"
@@ -238,7 +227,8 @@
                     formControlName="rdsph"
                   />
                 </td>
-                <td>
+                <td class="fixPlusSign">
+                  <span *ngIf="+sightForm.get('rdcyl')!.value! > 0">+</span>
                   <input
                     type="number"
                     step="0.25"
@@ -246,7 +236,8 @@
                     formControlName="rdcyl"
                   />
                 </td>
-                <td>
+                <td class="fixPlusSign">
+                  <span *ngIf="+sightForm.get('rdaxis')!.value! > 0">+</span>
                   <input
                     type="number"
                     step="0.25"
@@ -254,7 +245,8 @@
                     formControlName="rdaxis"
                   />
                 </td>
-                <td>
+                <td class="fixPlusSign">
+                  <span *ngIf="+sightForm.get('ldsph')!.value! > 0">+</span>
                   <input
                     type="number"
                     step="0.25"
@@ -262,7 +254,8 @@
                     formControlName="ldsph"
                   />
                 </td>
-                <td>
+                <td class="fixPlusSign">
+                  <span *ngIf="+sightForm.get('ldcyl')!.value! > 0">+</span>
                   <input
                     type="number"
                     step="0.25"
@@ -270,7 +263,8 @@
                     formControlName="ldcyl"
                   />
                 </td>
-                <td>
+                <td class="fixPlusSign">
+                  <span *ngIf="+sightForm.get('ldaxis')!.value! > 0">+</span>
                   <input
                     type="number"
                     step="0.25"
@@ -281,7 +275,8 @@
               </tr>
               <tr>
                 <td>R</td>
-                <td>
+                <td class="fixPlusSign">
+                  <span *ngIf="+sightForm.get('rrsph')!.value! > 0">+</span>
                   <input
                     type="number"
                     step="0.25"
@@ -289,7 +284,8 @@
                     formControlName="rrsph"
                   />
                 </td>
-                <td>
+                <td class="fixPlusSign">
+                  <span *ngIf="+sightForm.get('rrcyl')!.value! > 0">+</span>
                   <input
                     type="number"
                     step="0.25"
@@ -297,7 +293,8 @@
                     formControlName="rrcyl"
                   />
                 </td>
-                <td>
+                <td class="fixPlusSign">
+                  <span *ngIf="+sightForm.get('rraxis')!.value! > 0">+</span>
                   <input
                     type="number"
                     step="0.25"
@@ -305,7 +302,8 @@
                     formControlName="rraxis"
                   />
                 </td>
-                <td>
+                <td class="fixPlusSign">
+                  <span *ngIf="+sightForm.get('lrsph')!.value! > 0">+</span>
                   <input
                     type="number"
                     step="0.25"
@@ -313,7 +311,8 @@
                     formControlName="lrsph"
                   />
                 </td>
-                <td>
+                <td class="fixPlusSign">
+                  <span *ngIf="+sightForm.get('lrcyl')!.value! > 0">+</span>
                   <input
                     type="number"
                     step="0.25"
@@ -321,7 +320,8 @@
                     formControlName="lrcyl"
                   />
                 </td>
-                <td>
+                <td class="fixPlusSign">
+                  <span *ngIf="+sightForm.get('lraxis')!.value! > 0">+</span>
                   <input
                     type="number"
                     step="0.25"
@@ -522,7 +522,7 @@
           <strong>Notes:</strong> {{ item.note }}</span
         >
         <h3 class="history__date">
-          {{ item.date | date: "short" }}
+          {{ item.date | date : "short" }}
           <i class="fa-regular fa-clock"></i>
         </h3>
       </div>
